@@ -1,0 +1,17 @@
+@use "scss-reset/reset";
+@use "core/breakpoints";
+@use "core/colorpalette";
+@use "core/variables";
+@use "core/typography";
+@use "core/global";
+@use "core/grid";
+@use "@offbeat/animation-framework/active-state-animations";
+
+// Include components
+@use "components/button";
+
+:root {
+  --anim-background-color: var(--primary-gold);
+}
+
+// Include above the fold modules

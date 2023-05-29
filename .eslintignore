@@ -1,0 +1,4 @@
+node_modules/
+dist/
+src/js/scaffolded-modules.json
+lint-staged.config.js

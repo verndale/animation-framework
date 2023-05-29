@@ -1,0 +1,124 @@
+//Typography
+@use "./breakpoints";
+@use "sass-rem" as rem;
+
+body {
+  font-family: var(--secondary-font);
+  font-size: rem.convert(16px);
+  line-height: 1.63;
+
+  @include breakpoints.mq(wide) {
+    font-size: rem.convert(18px);
+    line-height: 1.56;
+  }
+}
+
+h1 {
+  font-family: var(--primary-font);
+  font-size: rem.convert(40px);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-block-end: 20px;
+
+  @include breakpoints.mq(tabletLandscape) {
+    font-size: rem.convert(50px);
+    line-height: 1.08;
+    margin-block-end: 30px;
+  }
+
+  @include breakpoints.mq(wide) {
+    font-size: rem.convert(60px);
+    line-height: 0.97;
+  }
+}
+
+h2 {
+  font-family: var(--primary-font);
+  font-size: rem.convert(32px);
+  font-weight: 700;
+  line-height: 1.13;
+  margin-block-end: 10px;
+
+  @include breakpoints.mq(tabletLandscape) {
+    font-size: rem.convert(42px);
+    line-height: 1.1;
+    margin-block-end: 20px;
+  }
+
+  @include breakpoints.mq(wide) {
+    font-size: rem.convert(45px);
+    line-height: 1.09;
+  }
+}
+
+h3 {
+  font-family: var(--primary-font);
+  font-size: rem.convert(28px);
+  font-weight: 700;
+  line-height: 1.14;
+  margin-block-end: 10px;
+
+  @include breakpoints.mq(tabletLandscape) {
+    font-size: rem.convert(35px);
+    line-height: 1.11;
+    margin-block-end: 20px;
+  }
+
+  @include breakpoints.mq(wide) {
+    font-size: rem.convert(38px);
+    line-height: 1.11;
+  }
+}
+
+h4 {
+  font-family: var(--primary-font);
+  font-size: rem.convert(24px);
+  font-weight: 700;
+  line-height: 1.17;
+  margin-block-end: 10px;
+
+  @include breakpoints.mq(tabletLandscape) {
+    font-size: rem.convert(29px);
+    line-height: 1.14;
+    margin-block-end: 20px;
+  }
+
+  @include breakpoints.mq(wide) {
+    font-size: rem.convert(32px);
+    line-height: 1.13;
+  }
+}
+
+h5 {
+  font-family: var(--primary-font);
+  font-size: rem.convert(21px);
+  font-weight: 700;
+  line-height: 1.19;
+
+  @include breakpoints.mq(tabletLandscape) {
+    font-size: rem.convert(24px);
+    line-height: 1.17;
+  }
+
+  @include breakpoints.mq(wide) {
+    font-size: rem.convert(26px);
+    line-height: 1.23;
+  }
+}
+
+h6 {
+  font-family: var(--primary-font);
+  font-size: rem.convert(18px);
+  font-weight: 700;
+  line-height: 1.33;
+
+  @include breakpoints.mq(tabletLandscape) {
+    font-size: rem.convert(20px);
+    line-height: 1.2;
+  }
+
+  @include breakpoints.mq(wide) {
+    font-size: rem.convert(24px);
+    line-height: 1.42;
+  }
+}

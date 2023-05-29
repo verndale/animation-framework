@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {{>head title='Home page' showScripts=showScripts}}
+</head>
+<body>
+  <!-- Header -->
+  {{>header}}
+
+  <!-- Main Content -->
+  <main>
+    {{#with accordion}}{{> accordion}}{{/with}}
+  </main>
+
+  <!-- Footer -->
+  {{>footer showScripts=showScripts}}
+</body>
+</html>
