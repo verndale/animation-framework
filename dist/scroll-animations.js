@@ -6,7 +6,7 @@ import { scroll as tt, animate as R } from "motion";
  * SPDX-License-Identifier: BSD-3-Clause
  */
 var I;
-const T = window, y = T.trustedTypes, U = y ? y.createPolicy("lit-html", { createHTML: (o) => o }) : void 0, O = "$lit$", _ = `lit$${(Math.random() + "").slice(9)}$`, F = "?" + _, et = `<${F}>`, f = document, M = () => f.createComment(""), N = (o) => o === null || typeof o != "object" && typeof o != "function", G = Array.isArray, it = (o) => G(o) || typeof (o == null ? void 0 : o[Symbol.iterator]) == "function", j = `[ 	
+const C = window, y = C.trustedTypes, U = y ? y.createPolicy("lit-html", { createHTML: (o) => o }) : void 0, O = "$lit$", _ = `lit$${(Math.random() + "").slice(9)}$`, F = "?" + _, et = `<${F}>`, f = document, M = () => f.createComment(""), N = (o) => o === null || typeof o != "object" && typeof o != "function", G = Array.isArray, it = (o) => G(o) || typeof (o == null ? void 0 : o[Symbol.iterator]) == "function", j = `[ 	
 \f\r]`, x = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, B = /-->/g, D = />/g, v = RegExp(`>|${j}(?:([^\\s"'>=/]+)(${j}*=${j}*(?:[^ 	
 \f\r"'\`<>=]|("|')|))|$)`, "g"), z = /'/g, V = /"/g, J = /^(?:script|style|textarea|title)$/i, st = (o) => (t, ...e) => ({ _$litType$: o, strings: t, values: e }), nt = st(1), b = Symbol.for("lit-noChange"), $ = Symbol.for("lit-nothing"), W = /* @__PURE__ */ new WeakMap(), m = f.createTreeWalker(f, 129, null, !1), ot = (o, t) => {
   const e = o.length - 1, i = [];
@@ -42,8 +42,8 @@ class w {
             if (d.endsWith(O) || d.startsWith(_)) {
               const p = u[n++];
               if (a.push(d), p !== void 0) {
-                const S = s.getAttribute(p.toLowerCase() + O).split(_), C = /([.?@])?(.*)/.exec(p);
-                h.push({ type: 1, index: r, name: C[2], strings: S, ctor: C[1] === "." ? lt : C[1] === "?" ? at : C[1] === "@" ? dt : k });
+                const S = s.getAttribute(p.toLowerCase() + O).split(_), T = /([.?@])?(.*)/.exec(p);
+                h.push({ type: 1, index: r, name: T[2], strings: S, ctor: T[1] === "." ? lt : T[1] === "?" ? at : T[1] === "@" ? dt : k });
               } else
                 h.push({ type: 6, index: r });
             }
@@ -250,8 +250,8 @@ class ct {
     g(this, t);
   }
 }
-const Z = T.litHtmlPolyfillSupport;
-Z == null || Z(w, P), ((I = T.litHtmlVersions) !== null && I !== void 0 ? I : T.litHtmlVersions = []).push("2.7.4");
+const Z = C.litHtmlPolyfillSupport;
+Z == null || Z(w, P), ((I = C.litHtmlVersions) !== null && I !== void 0 ? I : C.litHtmlVersions = []).push("2.7.4");
 /**
  * @license
  * Copyright 2020 Google LLC
@@ -325,7 +325,7 @@ let A = class extends Y {
   }
   async updated(o) {
     super.updated(o), this.animated && (this.animScroll ? tt(
-      R(this.firstElementChild, this.animated, {
+      R(this, this.animated, {
         duration: this.duration,
         delay: this.delay
       })

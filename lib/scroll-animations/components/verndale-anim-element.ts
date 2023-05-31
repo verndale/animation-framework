@@ -36,7 +36,7 @@ export class VerndaleAnimElement extends LitElement {
     if (!this.animated) return;
     if (this.animScroll)
       scroll(
-        animate(this.firstElementChild as Element, this.animated, {
+        animate(this as Element, this.animated, {
           duration: this.duration,
           delay: this.delay
         })

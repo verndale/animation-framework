@@ -5,7 +5,7 @@ import { Title, Subtitle, Description, Stories } from '@storybook/blocks';
 import '../src/scripts';
 import '../src/scss/styles.scss';
 import { SOURCE_PATHS } from '../.toolkit/config';
-import '@offbeat/animation-framework/scroll-animations';
+import '../lib/scroll-animations';
 
 svgxhr({
   filename: `${SOURCE_PATHS.STATIC}/images/svgsheet.svg`

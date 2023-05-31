@@ -5,13 +5,8 @@
 @use "core/typography";
 @use "core/global";
 @use "core/grid";
-@use "@offbeat/animation-framework/active-state-animations";
-
 // Include components
 @use "components/button";
-
-:root {
-  --anim-background-color: var(--primary-gold);
-}
+@use "../../lib/active-state-animations/index.scss";
 
 // Include above the fold modules
