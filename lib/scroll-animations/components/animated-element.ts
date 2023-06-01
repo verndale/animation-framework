@@ -1,7 +1,7 @@
 import { LitElement, PropertyValueMap, css } from 'lit';
 import { html, unsafeStatic } from 'lit/static-html.js';
 import { customElement, property } from 'lit/decorators.js';
-import { scroll, animate, MotionKeyframesDefinition } from 'motion';
+import { scroll, animate, MotionKeyframesDefinition, inView } from 'motion';
 
 @customElement('animated-element')
 export class AnimatedElement extends LitElement {
@@ -17,11 +17,14 @@ export class AnimatedElement extends LitElement {
   @property({ type: Boolean, attribute: 'scrolling' })
   scrolling?: boolean;
 
+  @property({ type: Boolean, attribute: 'wrapper' })
+  wrapper?: boolean;
+
   @property({ type: Object })
   anim?: MotionKeyframesDefinition;
 
   @property({ type: Number })
-  duration = 2;
+  duration?: number;
 
   @property({ type: Number })
   delay = 0;
@@ -32,16 +35,23 @@ export class AnimatedElement extends LitElement {
 
   async updated(changedProperties: PropertyValueMap<unknown> | Map<PropertyKey, unknown>) {
     super.updated(changedProperties);
-
     if (!this.anim) return;
-    if (this.scrolling)
+    if (this.scrolling) {
       scroll(
-        animate(this as Element, this.anim, {
+        animate(this.wrapper ? (this.firstElementChild as Element) : (this as Element), this.anim, {
           duration: this.duration,
           delay: this.delay
-        })
+        }),
+        { target: this.wrapper ? (this.firstElementChild as Element) : (this as Element) }
       );
-    else animate(this as Element, this.anim, { duration: this.duration, delay: this.delay });
+    } else {
+      inView(this.wrapper ? (this.firstElementChild as Element) : (this as Element), info => {
+        animate(info.target, this.anim as MotionKeyframesDefinition, {
+          duration: 2,
+          delay: this.delay
+        });
+      });
+    }
   }
 }
 

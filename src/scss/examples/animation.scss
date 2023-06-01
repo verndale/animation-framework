@@ -1,0 +1,28 @@
+.overflow-hidden {
+  margin-block: 50px;
+  overflow: hidden;
+}
+
+.parallax-picture {
+  transform: scale(2);
+}
+
+.inview-section {
+  block-size: 100vh;
+  font-weight: 700;
+  padding: 50px;
+
+  & > * {
+    opacity: 0;
+  }
+
+  &.gold {
+    background-color: var(--primary-gold);
+    color: var(--verndale-black);
+  }
+
+  &.purple {
+    background-color: var(--primary-purple);
+    color: var(--white);
+  }
+}

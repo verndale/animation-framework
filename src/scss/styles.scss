@@ -5,6 +5,9 @@
 @use "core/typography";
 @use "core/global";
 @use "core/grid";
+
+@use "examples/animation.scss";
+
 // Include components
 @use "components/button";
 @use "../../lib/active-state-animations/index.scss";

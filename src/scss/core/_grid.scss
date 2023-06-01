@@ -158,7 +158,7 @@ $bs-breakpoints: (
       }
 
       .offset-#{$size}-#{$column} {
-        & > * {
+        & {
           margin-inline-start: math.div($column, $grid-colum-count) * 100%;
         }
       }

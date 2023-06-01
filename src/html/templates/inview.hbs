@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {{>head title='Inview Example' showScripts=showScripts}}
+</head>
+<body>
+  <!-- Header -->
+  {{>header}}
+
+  <!-- Main Content -->
+  <main>
+      {{#each items}}
+        <animated-element as="div" anim='{"opacity":[0, 1]}' wrapper {{#if className}}class="{{className}}"{{/if}}>
+            <h2>{{title}}</h2>
+        </animated-element>
+      {{/each}}
+  </main>
+
+  <!-- Footer -->
+  {{>footer showScripts=showScripts}}
+</body>
+</html>

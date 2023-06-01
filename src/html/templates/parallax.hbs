@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {{>head title='Parallax Example' showScripts=showScripts}}
+</head>
+<body>
+  <!-- Header -->
+  {{>header}}
+
+  <!-- Main Content -->
+  <main>
+      {{#each pictures}}
+        <animated-element as="div" scrolling wrapper anim='{"y":[-50, 50], "scale":[1.25, 1.25]}' class="overflow-hidden">
+            {{>picture}}
+        </animated-element>
+      {{/each}}
+  </main>
+
+  <!-- Footer -->
+  {{>footer showScripts=showScripts}}
+</body>
+</html>
