@@ -324,12 +324,12 @@ let A = class extends Y {
     return pt`<${K(this.as)}><slot></slot></${K(this.as)}>`;
   }
   async updated(o) {
-    super.updated(o), this.animated && (this.animScroll ? tt(
-      R(this, this.animated, {
+    super.updated(o), this.anim && (this.scrolling ? tt(
+      R(this, this.anim, {
         duration: this.duration,
         delay: this.delay
       })
-    ) : R(this, this.animated, { duration: this.duration, delay: this.delay }));
+    ) : R(this, this.anim, { duration: this.duration, delay: this.delay }));
   }
 };
 A.styles = X`
@@ -341,11 +341,11 @@ H([
   E({ type: String })
 ], A.prototype, "as", 2);
 H([
-  E({ type: Boolean, attribute: "animscroll" })
-], A.prototype, "animScroll", 2);
+  E({ type: Boolean, attribute: "scrolling" })
+], A.prototype, "scrolling", 2);
 H([
   E({ type: Object })
-], A.prototype, "animated", 2);
+], A.prototype, "anim", 2);
 H([
   E({ type: Number })
 ], A.prototype, "duration", 2);
@@ -353,9 +353,9 @@ H([
   E({ type: Number })
 ], A.prototype, "delay", 2);
 A = H([
-  _t("verndale-anim-element")
+  _t("animated-element")
 ], A);
 export {
-  A as VerndaleAnimElement
+  A as AnimatedElement
 };
 //# sourceMappingURL=scroll-animations.js.map

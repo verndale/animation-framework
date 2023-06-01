@@ -1,1 +1,1 @@
-:root{--anim-background-color: #ff0000}.background{background-color:var(--anim-background-color)}
+:root{--anim-background-color: #ff0000}.background-anim{--anim-background-color: #0000ff;position:relative}.background-anim:hover:before{transform:scaleY(1)}.background-anim:before{content:"";position:absolute;z-index:-1;top:0;left:0;right:0;bottom:0;background-color:var(--anim-background-color);transform:scaleY(0);transform-origin:50% 100%;transition-property:transform;transition-duration:.3s;transition-timing-function:ease-out}
