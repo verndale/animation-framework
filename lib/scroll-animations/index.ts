@@ -1,2 +1,2 @@
-import { VerndaleAnimElement } from './components/verndale-anim-element';
-export { VerndaleAnimElement };
+import { AnimatedElement } from './components/animated-element';
+export { AnimatedElement };

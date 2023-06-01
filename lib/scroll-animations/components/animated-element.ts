@@ -3,8 +3,8 @@ import { html, unsafeStatic } from 'lit/static-html.js';
 import { customElement, property } from 'lit/decorators.js';
 import { scroll, animate, MotionKeyframesDefinition } from 'motion';
 
-@customElement('verndale-anim-element')
-export class VerndaleAnimElement extends LitElement {
+@customElement('animated-element')
+export class AnimatedElement extends LitElement {
   static styles = css`
     :host {
       display: block;
@@ -14,11 +14,11 @@ export class VerndaleAnimElement extends LitElement {
   @property({ type: String })
   as = 'div';
 
-  @property({ type: Boolean, attribute: 'animscroll' })
-  animScroll?: boolean;
+  @property({ type: Boolean, attribute: 'scrolling' })
+  scrolling?: boolean;
 
   @property({ type: Object })
-  animated?: MotionKeyframesDefinition;
+  anim?: MotionKeyframesDefinition;
 
   @property({ type: Number })
   duration = 2;
@@ -33,20 +33,20 @@ export class VerndaleAnimElement extends LitElement {
   async updated(changedProperties: PropertyValueMap<unknown> | Map<PropertyKey, unknown>) {
     super.updated(changedProperties);
 
-    if (!this.animated) return;
-    if (this.animScroll)
+    if (!this.anim) return;
+    if (this.scrolling)
       scroll(
-        animate(this as Element, this.animated, {
+        animate(this as Element, this.anim, {
           duration: this.duration,
           delay: this.delay
         })
       );
-    else animate(this as Element, this.animated, { duration: this.duration, delay: this.delay });
+    else animate(this as Element, this.anim, { duration: this.duration, delay: this.delay });
   }
 }
 
 declare global {
   interface HTMLElementTagNameMap {
-    'verndale-anim-element': VerndaleAnimElement;
+    'animated-element': AnimatedElement;
   }
 }

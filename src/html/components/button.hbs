@@ -1,6 +1,6 @@
-<verndale-anim-element animated='{"opacity":[0, 1]}' as="div">
+<animated-element anim='{"opacity":[0, 1]}' as="div">
 {{#ifCond type "==" "link"}}
-<a href="#" class="background-anim btn btn--{{className}}{{#ifCond style "==" "outline"}} btn--outline{{/ifCond}}{{#ifCond size "==" "small"}} btn--small{{/ifCond}}{{#if disabled}} btn--disabled{{/if}}">
+<a href="#" class="btn-anim btn-anim--outline btn btn--{{className}}{{#ifCond style "==" "outline"}} btn--outline{{/ifCond}}{{#ifCond size "==" "small"}} btn--small{{/ifCond}}{{#if disabled}} btn--disabled{{/if}}">
   {{#if icon}}
   {{>svg name=icon.name viewBox=icon.viewBox}}
   {{/if}}
@@ -14,4 +14,4 @@
   {{label}}
 </button>
 {{/ifCond}}
-</verndale-anim-element>
+</animated-element>
