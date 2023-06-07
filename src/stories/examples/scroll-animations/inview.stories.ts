@@ -10,7 +10,6 @@ export type InviewProps = {
 
 const meta: Meta<InviewProps> = {
   title: 'Examples/Scroll Animations/InView',
-  tags: ['autodocs'],
   render: template,
   argTypes: {
     items: { control: 'object' }
@@ -20,7 +19,7 @@ const meta: Meta<InviewProps> = {
 export default meta;
 type Story = StoryObj<InviewProps>;
 
-export const Default: Story = {
+export const InView: Story = {
   args: {
     items: [
       {
