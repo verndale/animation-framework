@@ -42,11 +42,14 @@ export class AnimatedElement extends LitElement {
   @property({ type: Object })
   anim?: MotionKeyframesDefinition;
 
+  // @property({ type: String, attribute: 'scroll-offset' })
+  // offset?: string;
+
   @property({ type: Number })
   duration?: number = 1;
 
   @property({ type: Number })
-  delay = 0;
+  delay?: number = 0;
 
   render() {
     return html`<${unsafeStatic(this.as)}><slot></slot></${unsafeStatic(this.as)}>`;

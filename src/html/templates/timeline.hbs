@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {{>head title='Timeline Example' showScripts=showScripts}}
+</head>
+<body>
+  <!-- Header -->
+  {{>header}}
+
+  <!-- Main Content -->
+  <main>
+      {{#each items}}
+       <div class="demo-container">
+          <div class="demo-content">
+            <animated-element as="div" class="square" timeline="{{timeline}}"/>
+          </div>
+        </div>
+      {{/each}}
+  </main>
+
+  <!-- Footer -->
+  {{>footer showScripts=showScripts}}
+</body>
+</html>
