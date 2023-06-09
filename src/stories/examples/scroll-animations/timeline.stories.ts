@@ -3,7 +3,18 @@ import template from '../../../html/templates/timeline.hbs';
 
 export type InviewProps = {
   items: {
-    timeline: string;
+    animatedTimeline?: {
+      as?: string;
+      className?: string;
+    };
+    animatedElements: {
+      as?: string;
+      className?: string;
+      opacity?: string;
+      translateX?: string;
+      translateY?: string;
+      scale?: string;
+    }[];
   }[];
 };
 
@@ -15,7 +26,7 @@ const meta: Meta<InviewProps> = {
   },
   decorators: [
     Story =>
-      `<div style="border: 4px dashed #000; text-align: center; min-height: 75vh; display: grid; place-content:center;">scroll</div>
+      `<div style="border: 4px dashed #000; text-align: center; min-height: 50vh; display: grid; place-content:center;">scroll</div>
       ${Story()}
       <div style="border: 4px dashed #000; text-align: center; min-height: 50vh; display: grid; place-content:center;">scroll</div>`
   ]
@@ -28,7 +39,27 @@ export const Timeline: Story = {
   args: {
     items: [
       {
-        timeline: '[{"opacity":[0, 1]}], [{"scale":[1, 2]}]'
+        animatedTimeline: {
+          as: 'div',
+          className: 'timeline'
+        },
+        animatedElements: [
+          {
+            as: 'div',
+            className: 'square',
+            opacity: '0, 1'
+          },
+          {
+            as: 'div',
+            className: 'square',
+            opacity: '0, 1'
+          },
+          {
+            as: 'div',
+            className: 'square',
+            opacity: '0, 1'
+          }
+        ]
       }
     ]
   }

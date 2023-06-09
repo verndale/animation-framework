@@ -10,7 +10,7 @@
   <!-- Main Content -->
   <main>
       {{#each pictures}}
-        <animated-element as="div" scrolling wrapper anim="{{animation}}" class="overflow-hidden" inview-offset="{{../offset}}">
+        <animated-element as="div" scrub wrapper stagger="0.25" anim="{{animation}}" class="overflow-hidden" inview-offset="{{../offset}}">
             {{>picture}}
         </animated-element>
       {{/each}}

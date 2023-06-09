@@ -1,2 +1,4 @@
 import { AnimatedElement } from './components/animated-element';
-export { AnimatedElement };
+import { AnimatedTimeline } from './components/animated-timeline';
+
+export { AnimatedElement, AnimatedTimeline };

@@ -1,15 +1,9 @@
 .overflow-hidden {
-  margin-block: 100px;
-  max-inline-size: 500px;
   overflow: hidden;
+}
 
-  &:nth-child(odd) {
-    margin-inline-start: auto;
-  }
-
-  &:nth-child(even) {
-    margin-inline-end: auto;
-  }
+.fit-content {
+  inline-size: fit-content;
 }
 
 .parallax-picture {
@@ -19,10 +13,12 @@
 .inview-section {
   block-size: 100vh;
   font-weight: 700;
+  overflow: hidden;
   padding: 50px;
 
-  & > * {
-    opacity: 0;
+  h2 {
+    inline-size: fit-content;
+    transform-origin: center;
   }
 
   &.gold {
@@ -37,13 +33,13 @@
 }
 
 .demo-content {
+  block-size: 100%;
   display: flex;
   flex-direction: column;
-  block-size: 100%;
+  inline-size: 290px;
   justify-content: center;
   position: relative;
   text-align: center;
-  inline-size: 290px;
 }
 
 .demo-container {
@@ -51,11 +47,11 @@
   border-block-end: 1px solid rgba(0, 0, 0, 0.65);
   cursor: pointer;
   display: flex;
+  inline-size: 100%;
   justify-content: center;
   min-block-size: 200px;
   padding-block-start: 35px;
   position: relative;
-  inline-size: 100%;
   z-index: 1;
 }
 
@@ -67,12 +63,12 @@
 .square,
 .circle {
   background-color: var(--primary-gold);
-  font-size: 14px;
   block-size: 28px;
+  font-size: 14px;
+  inline-size: 28px;
   margin: 1px;
   pointer-events: none;
   position: relative;
-  inline-size: 28px;
 }
 
 .parallax__image {
