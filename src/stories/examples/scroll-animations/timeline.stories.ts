@@ -26,7 +26,7 @@ const meta: Meta<InviewProps> = {
   },
   decorators: [
     Story =>
-      `<div style="border: 4px dashed #000; text-align: center; min-height: 50vh; display: grid; place-content:center;">scroll</div>
+      `<div style="border: 4px dashed #000; text-align: center; min-height: 100vh; display: grid; place-content:center;">scroll</div>
       ${Story()}
       <div style="border: 4px dashed #000; text-align: center; min-height: 50vh; display: grid; place-content:center;">scroll</div>`
   ]
@@ -52,12 +52,12 @@ export const Timeline: Story = {
           {
             as: 'div',
             className: 'square',
-            opacity: '0, 1'
+            scale: '0, 1'
           },
           {
             as: 'div',
             className: 'square',
-            opacity: '0, 1'
+            translateX: '-100px, 0'
           }
         ]
       }

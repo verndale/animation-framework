@@ -1,14 +1,7 @@
 import { LitElement, PropertyValueMap, css } from 'lit';
 import { html, unsafeStatic } from 'lit/static-html.js';
 import { customElement, property } from 'lit/decorators.js';
-import {
-  animate,
-  MotionKeyframesDefinition,
-  inView,
-  timeline,
-  ElementSequence,
-  TimelineDefinition
-} from 'motion';
+import { inView, MotionKeyframesDefinition, timeline, TimelineDefinition } from 'motion';
 
 @customElement('animated-timeline')
 export class AnimatedTimeline extends LitElement {
@@ -26,14 +19,47 @@ export class AnimatedTimeline extends LitElement {
   }
 
   async updated(changedProperties: PropertyValueMap<unknown> | Map<PropertyKey, unknown>) {
-    console.log('animated-timeline updated');
     super.updated(changedProperties);
-    console.log(this.querySelectorAll('animated-element'));
+    this.setupInViewAnimation();
+  }
+
+  private getAnimation(el: HTMLElement, attibutes: string[]) {
+    const animObject: MotionKeyframesDefinition = {};
+
+    if (attibutes.includes('opacity')) {
+      const attr = el.getAttribute('opacity');
+      if (attr?.includes(',')) animObject.opacity = attr.split(',');
+      else animObject.opacity = attr ?? 1;
+    }
+    if (attibutes.includes('translate-x')) {
+      const attr = el.getAttribute('translate-x');
+      if (attr?.includes(',')) animObject.x = attr.split(',');
+      else animObject.x = attr ?? 0;
+    }
+    if (attibutes.includes('translate-y')) {
+      const attr = el.getAttribute('translate-y');
+      if (attr?.includes(',')) animObject.y = attr.split(',');
+      else animObject.y = attr ?? 0;
+    }
+    if (attibutes.includes('scale')) {
+      const attr = el.getAttribute('scale');
+      if (attr?.includes(',')) animObject.scale = attr.split(',');
+      else animObject.scale = attr ?? 1;
+    }
+
+    return animObject;
+  }
+
+  private setupInViewAnimation() {
     const sequence = [] as TimelineDefinition;
-    this.querySelectorAll('animated-element').forEach((el: Element, i) => {
-      sequence.push([el, { opacity: [0, 1] }]);
+    this.querySelectorAll('animated-element').forEach((el: HTMLElement) => {
+      const attributes = el.getAttributeNames();
+      const animObject = this.getAnimation(el, attributes);
+      sequence.push([el, animObject]);
     });
-    timeline(sequence);
+    inView(this, () => {
+      timeline(sequence);
+    });
   }
 }
 

@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  {{>head title='Parallax Example' showScripts=showScripts}}
+  {{>head title='Parallax Demo' showScripts=showScripts}}
 </head>
 <body>
   <!-- Header -->
   {{>header}}
 
   <!-- Main Content -->
-  <main>
+  <main class="parallax-demo__container">
       {{#each pictures}}
-        <animated-element as="div" scrub wrapper stagger="0.25" anim="{{animation}}" class="overflow-hidden" inview-offset="{{../offset}}">
-            {{>picture}}
-        </animated-element>
+        <div class="overflow-hidden fit-content">
+          <animated-element scrub {{#if opacity}}opacity="{{opacity}}"{{/if}} {{#if translateX}}translate-x="{{translateX}}"{{/if}} {{#if translateY}}translate-y="{{translateY}}"{{/if}} {{#if scale}}scale="{{scale}}"{{/if}} inview-offset="{{../offset}}">
+              {{>picture}}
+          </animated-element>
+        </div>
       {{/each}}
   </main>
 

@@ -1,8 +1,7 @@
 import { LitElement, PropertyValueMap, css } from 'lit';
 import { html, unsafeStatic } from 'lit/static-html.js';
 import { customElement, property } from 'lit/decorators.js';
-import { animate, MotionKeyframesDefinition, inView } from 'motion';
-
+import { animate, MotionKeyframesDefinition, inView, scroll } from 'motion';
 @customElement('animated-element')
 export class AnimatedElement extends LitElement {
   static styles = css`
@@ -33,26 +32,26 @@ export class AnimatedElement extends LitElement {
   scrub?: boolean;
 
   @property({ type: String, attribute: 'start-offset' })
-  startOffset?: string = 'start end';
+  startOffset = 'start end';
 
   @property({ type: String, attribute: 'end-offset' })
-  endOffset?: string = 'end start';
+  endOffset = 'end start';
 
   @property({ type: Number, attribute: 'duration' })
-  duration?: number = 1;
+  duration = 1;
 
   @property({ type: Number, attribute: 'delay' })
-  delay?: number = 0;
+  delay = 0;
 
   render() {
     return html`<${unsafeStatic(this.as)}><slot></slot></${unsafeStatic(this.as)}>`;
   }
 
   async updated(changedProperties: PropertyValueMap<unknown> | Map<PropertyKey, unknown>) {
-    console.log('animated-element updated');
     super.updated(changedProperties);
     if (this.parentElement?.tagName === 'ANIMATED-TIMELINE') return;
-    this.setupInViewAnimation();
+    if (this.scrub) this.setupScrollAnimation();
+    else this.setupInViewAnimation();
   }
 
   private getAnimation() {
@@ -66,7 +65,7 @@ export class AnimatedElement extends LitElement {
       else animObject.x = this.translateX;
     }
     if (this.translateY) {
-      if (this.translateY.includes(',')) animObject.x = this.translateY.split(',');
+      if (this.translateY.includes(',')) animObject.y = this.translateY.split(',');
       else animObject.y = this.translateY;
     }
     if (this.scale) {
@@ -84,6 +83,19 @@ export class AnimatedElement extends LitElement {
         delay: this.delay
       });
     });
+  }
+
+  private setupScrollAnimation() {
+    scroll(
+      animate(this, this.getAnimation(), {
+        duration: this.duration,
+        delay: this.delay
+      }),
+      {
+        target: this,
+        offset: ['start end', 'end start']
+      }
+    );
   }
 }
 

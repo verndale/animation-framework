@@ -75,6 +75,16 @@
   transform-origin: center;
 
   &--translate {
-    scale: 1.25;
+    scale: 1.2;
+  }
+}
+
+.parallax-demo__container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+
+  :nth-child(even) {
+    align-self: flex-end;
   }
 }
