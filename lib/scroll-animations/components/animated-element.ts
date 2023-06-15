@@ -1,7 +1,7 @@
 import { LitElement, PropertyValueMap, css } from 'lit';
 import { html, unsafeStatic } from 'lit/static-html.js';
 import { customElement, property } from 'lit/decorators.js';
-import { animate, MotionKeyframesDefinition, inView, scroll } from 'motion';
+import { animate, StyleKeyframesDefinition, inView, scroll } from 'motion';
 @customElement('animated-element')
 export class AnimatedElement extends LitElement {
   static styles = css`
@@ -55,7 +55,7 @@ export class AnimatedElement extends LitElement {
   }
 
   private getAnimation() {
-    const animObject: MotionKeyframesDefinition = {};
+    const animObject: StyleKeyframesDefinition = {};
     if (this.opacity) {
       if (this.opacity.includes(',')) animObject.opacity = this.opacity.split(',');
       else animObject.opacity = this.opacity;

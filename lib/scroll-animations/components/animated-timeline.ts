@@ -1,7 +1,13 @@
 import { LitElement, PropertyValueMap, css } from 'lit';
 import { html, unsafeStatic } from 'lit/static-html.js';
 import { customElement, property } from 'lit/decorators.js';
-import { inView, MotionKeyframesDefinition, timeline, TimelineDefinition } from 'motion';
+import {
+  AnimationListOptions,
+  inView,
+  StyleKeyframesDefinition,
+  timeline,
+  TimelineDefinition
+} from 'motion';
 
 @customElement('animated-timeline')
 export class AnimatedTimeline extends LitElement {
@@ -24,7 +30,7 @@ export class AnimatedTimeline extends LitElement {
   }
 
   private getAnimation(el: HTMLElement, attibutes: string[]) {
-    const animObject: MotionKeyframesDefinition = {};
+    const animObject: StyleKeyframesDefinition = {};
 
     if (attibutes.includes('opacity')) {
       const attr = el.getAttribute('opacity');
@@ -55,7 +61,11 @@ export class AnimatedTimeline extends LitElement {
     this.querySelectorAll('animated-element').forEach((el: HTMLElement) => {
       const attributes = el.getAttributeNames();
       const animObject = this.getAnimation(el, attributes);
-      sequence.push([el, animObject]);
+      const configObject = {
+        duration: el.getAttribute('duration') ?? 1,
+        delay: el.getAttribute('delay') ?? 0
+      } as AnimationListOptions;
+      sequence.push([el, animObject, configObject]);
     });
     inView(this, () => {
       timeline(sequence);

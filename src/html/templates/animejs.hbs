@@ -12,14 +12,16 @@
       {{#each items}}
       <div class="demo-container">
         <div class="demo-content">
-          {{#if stagger}}
-          <animated-element as="div" anim="{{animation}}" {{#if stagger}}stagger={{stagger}}{{/if}}>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-          </animated-element>
+          {{#if timelineItems}}
+          <animated-timeline {{#if className}}class="{{className}}"{{/if}} {{#if as}}as="{{as}}"{{/if}}>
+            {{#each timelineItems}}
+            <animated-element {{#if className}}class="{{className}}"{{/if}} {{#if opacity}}opacity="{{opacity}}"{{/if}} {{#if translateX}}translate-x="{{translateX}}"{{/if}} {{#if translateY}}translate-y="{{translateY}}"{{/if}} {{#if scale}}scale="{{scale}}"{{/if}}>
+            </animated-element>
+            {{/each}}
+          </animated-timeline>
           {{else}}
-          <animated-element  as="div" anim="{{animation}}" class="square"/>
+          <animated-element {{#if className}}class="{{className}}"{{/if}} {{#if opacity}}opacity="{{opacity}}"{{/if}} {{#if translateX}}translate-x="{{translateX}}"{{/if}} {{#if translateY}}translate-y="{{translateY}}"{{/if}} {{#if scale}}scale="{{scale}}"{{/if}}>
+          </animated-element>
           {{/if}}
         </div>
       </div>
