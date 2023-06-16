@@ -1,7 +1,7 @@
 import { LitElement, PropertyValueMap, css } from 'lit';
 import { html, unsafeStatic } from 'lit/static-html.js';
 import { customElement, property, state } from 'lit/decorators.js';
-import { animate, MotionKeyframesDefinition, inView } from 'motion';
+import { animate, MotionKeyframesDefinition, inView, AnimationControls } from 'motion';
 
 type animProps = 'opacity' | 'translateY' | 'translateX' | 'scale';
 
@@ -56,6 +56,10 @@ export class ToggleElement extends LitElement {
   hide?: boolean;
   @state()
   protected _state = 'hidden';
+  @property()
+  protected anim?: AnimationControls;
+  @property({ type: Number })
+  protected _currentTime?: number;
 
   @property({ type: String, attribute: 'in-opacity' })
   inOpacity?: string;
@@ -126,25 +130,59 @@ export class ToggleElement extends LitElement {
   }
 
   private setupToggleAnimation() {
-    if (this.show && (this._state === 'hide-anim' || this._state === 'hidden')) {
-      const inAnimObject = this.getAnimation('in');
-      this._state = 'shown';
-      this.hide = false;
-
-      animate(this, inAnimObject, {
-        duration: this.duration,
-        delay: this.delay && this.delay
-      });
-    } else if (!this.show && this._state === 'shown') {
-      const outAnimObject = this.getAnimation('out');
-      this._state = 'hide-anim';
-      animate(this, outAnimObject, { duration: this.duration, delay: this.delay }).finished.then(
-        () => {
-          this._state = 'hidden';
-          this.hide = true;
-        }
-      );
+    if (this.show) {
+      this.showAnimation();
+    } else if (!this.show) {
+      this.hideAnimation();
     }
+  }
+
+  private showAnimation() {
+    if (this._state === 'hide-anim') {
+      this._currentTime = this.anim?.currentTime || 0;
+      this.anim?.cancel();
+    }
+
+    console.log(this._state);
+
+    const inAnimObject = this.getAnimation('in');
+    this.anim = animate(this, inAnimObject, {
+      duration: this.duration,
+      delay: this.delay
+    });
+
+    if (this._state === 'hide-anim')
+      this.anim.currentTime = (this.duration || 0) - (this._currentTime || 0);
+
+    this.hide = false;
+    this._state = 'show-anim';
+    this.anim.finished.then(animInfo => {
+      if (animInfo) this._state = 'shown';
+    });
+  }
+
+  private hideAnimation() {
+    if (this._state === 'show-anim') {
+      this._currentTime = this.anim?.currentTime || 0;
+      this.anim?.cancel();
+    }
+
+    const outAnimObject = this.getAnimation('out');
+    this.anim = animate(this, outAnimObject, {
+      duration: this.duration,
+      delay: this.delay
+    });
+
+    if (this._state === 'show-anim')
+      this.anim.currentTime = (this.duration || 0) - (this._currentTime || 0);
+
+    this._state = 'hide-anim';
+    this.anim.finished.then(animInfo => {
+      if (animInfo) {
+        this._state = 'hidden';
+        this.hide = true;
+      }
+    });
   }
 }
 
