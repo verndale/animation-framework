@@ -63,7 +63,7 @@ export const Navigation: Story = {
           inTranslateY: '-30,0',
           outTranslateY: '0,-30',
           title: 'Nav 3',
-          content: 'Content 3',
+          content: 'Menu 3',
           className: 'navigation__menu'
         }
       }

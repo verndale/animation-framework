@@ -3,6 +3,8 @@ import { html, unsafeStatic } from 'lit/static-html.js';
 import { customElement, property, state } from 'lit/decorators.js';
 import { animate, MotionKeyframesDefinition, inView } from 'motion';
 
+type animProps = 'opacity' | 'translateY' | 'translateX' | 'scale';
+
 @customElement('toggle-element')
 export class ToggleElement extends LitElement {
   static styles = css`
@@ -48,10 +50,10 @@ export class ToggleElement extends LitElement {
   delay?: number = 0;
 
   //toggle
-  @property({ type: String, attribute: 'show', reflect: true })
-  show?: string;
-  @property({ type: String, attribute: 'hide', reflect: true })
-  hide?: string;
+  @property({ type: Boolean, attribute: 'show' })
+  show?: boolean;
+  @property({ type: Boolean, attribute: 'hide', reflect: true })
+  hide?: boolean;
   @state()
   protected _state = 'hidden';
 
@@ -85,38 +87,31 @@ export class ToggleElement extends LitElement {
   async updated(changedProperties: PropertyValueMap<unknown> | Map<PropertyKey, unknown>) {
     super.updated(changedProperties);
     if (this.parentElement?.tagName === 'ANIMATED-TIMELINE') return;
-    if (changedProperties.has('show' as never) || changedProperties.has('hide' as never))
-      this.setupToggleAnimation();
+    if (changedProperties.has('show' as never)) this.setupToggleAnimation();
     else this.setupInViewAnimation();
   }
 
   private getAnimation(prefix?: 'in' | 'out') {
-    const opacityKey: keyof ToggleElement = prefix ? `${prefix}Opacity` : 'opacity';
-    const opacityProp = this[opacityKey];
-
-    const transitionYKey: keyof ToggleElement = prefix ? `${prefix}TranslateY` : 'translateY';
-    const transitionYProp = this[transitionYKey];
-
+    const animationProperties: animProps[] = ['opacity', 'translateY', 'translateX', 'scale'];
     const animObject: MotionKeyframesDefinition = {};
-    if (typeof opacityProp === 'string') {
-      if (opacityProp.includes(',')) animObject.opacity = opacityProp.split(',');
-      else animObject.opacity = opacityProp;
-    }
+    const hasMultipleKeyframes = (value: string) => value?.includes(',');
 
-    if (typeof transitionYProp === 'string') {
-      if (transitionYProp.includes(','))
-        animObject.transform = transitionYProp.split(',').map(value => `translateY(${value}px)`);
-      else animObject.y = transitionYProp;
-    }
+    animationProperties.forEach(property => {
+      const propertyWithPrefix = `${prefix}${property.charAt(0).toUpperCase()}${property.slice(1)}`;
+      const propertyKey = (prefix ? propertyWithPrefix : property) as keyof ToggleElement;
+      if (!this[propertyKey]) return;
+      const propertyValue = this[propertyKey] as string;
 
-    if (this.translateY) {
-      if (this.translateY.includes(',')) animObject.x = this.translateY.split(',');
-      else animObject.y = this.translateY;
-    }
-    if (this.scale) {
-      if (this.scale.includes(',')) animObject.scale = this.scale.split(',');
-      else animObject.scale = this.scale;
-    }
+      if (property === 'translateY' || property === 'translateX') {
+        animObject.transform = hasMultipleKeyframes(propertyValue)
+          ? propertyValue.split(',').map(value => `${property}(${value}px)`)
+          : (animObject.transform = `${property}(${propertyValue}px)`);
+      } else {
+        animObject[property] = hasMultipleKeyframes(propertyValue)
+          ? propertyValue.split(',')
+          : propertyValue;
+      }
+    });
 
     return animObject;
   }
@@ -131,19 +126,22 @@ export class ToggleElement extends LitElement {
   }
 
   private setupToggleAnimation() {
-    if (this.show === 'true' && (this._state === 'hide-anim' || this._state === 'hidden')) {
+    if (this.show && (this._state === 'hide-anim' || this._state === 'hidden')) {
       const inAnimObject = this.getAnimation('in');
       this._state = 'shown';
+      this.hide = false;
+
       animate(this, inAnimObject, {
         duration: this.duration,
         delay: this.delay && this.delay
       });
-    } else if (this.hide === 'true' && this._state === 'shown') {
+    } else if (!this.show && this._state === 'shown') {
       const outAnimObject = this.getAnimation('out');
       this._state = 'hide-anim';
       animate(this, outAnimObject, { duration: this.duration, delay: this.delay }).finished.then(
         () => {
           this._state = 'hidden';
+          this.hide = true;
         }
       );
     }
