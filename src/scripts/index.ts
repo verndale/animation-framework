@@ -1,6 +1,7 @@
 import 'focus-visible';
 import create from '@verndale/core';
 import modules from './modules';
+import '../../lib/scroll-animations';
 import { IconButtonAnimation } from '../../lib/active-state-animations/components/button-animations';
 
 const isStorybook = !!document.getElementById('storybook-root');
