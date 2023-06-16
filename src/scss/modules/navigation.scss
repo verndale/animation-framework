@@ -1,0 +1,33 @@
+.navigation__items {
+  background-color: var(--primary-gold);
+  display: flex;
+  inline-size: 100%;
+}
+
+.navigation__item {
+  background-color: var(--primary-gold);
+  inline-size: 200px;
+  position: relative;
+}
+
+.navigation__item {
+  background-color: var(--primary-gold);
+  inline-size: 200px;
+  position: relative;
+}
+
+.navigation__menu-trigger {
+  background-color: var(--primary-gold);
+  padding: 20px;
+}
+
+.navigation__menu {
+  background-color: #fff;
+  block-size: 100px;
+  border: 1px solid var(--primary-gold);
+  inline-size: 300px;
+  inset-block-start: 100%;
+  padding: 20px;
+  position: absolute;
+  z-index: -1;
+}
