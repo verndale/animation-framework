@@ -1,0 +1,12 @@
+<ul class="navigation__items" data-module="navigation">
+    {{#each items}}
+    {{#with animatedElement}}
+    <li class="navigation__item">
+        <div class="navigation__menu-trigger">{{title}}</div>
+        <toggle-element hide="true" {{#if className}}class="{{className}}"{{/if}} as="{{as}}" {{#if inOpacity}}in-opacity="{{inOpacity}}"{{/if}} {{#if outOpacity}}out-opacity="{{outOpacity}}"{{/if}} {{#if inTranslateY}}in-translate-y="{{inTranslateY}}"{{/if}} {{#if outTranslateY}}out-translate-y="{{outTranslateY}}"{{/if}}>
+            {{content}}
+        </toggle-element>
+    </li>
+    {{/with}} 
+    {{/each}}
+</ul>
