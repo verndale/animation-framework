@@ -1,6 +1,7 @@
 import 'focus-visible';
 import create from '@verndale/core';
 import modules from './modules';
+import { IconButtonAnimation } from '../../lib/active-state-animations/components/button-animations';
 
 const isStorybook = !!document.getElementById('storybook-root');
 const body = document.querySelector('body') as HTMLBodyElement;
@@ -11,6 +12,7 @@ document.addEventListener(
     if (!body.dataset.modulesLoaded || isStorybook) {
       create(modules).then(() => {
         body.dataset.modulesLoaded = 'true';
+        IconButtonAnimation();
       });
     }
   },

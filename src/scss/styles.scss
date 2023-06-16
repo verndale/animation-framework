@@ -10,6 +10,7 @@
 
 // Include components
 @use "components/button";
-@use "../../lib/active-state-animations/index.scss";
+@use "components/animated-button";
+@use "../../lib/active-state-animations";
 
 // Include above the fold modules
