@@ -49,6 +49,7 @@ export class AnimatedElement extends LitElement {
 
   async updated(changedProperties: PropertyValueMap<unknown> | Map<PropertyKey, unknown>) {
     super.updated(changedProperties);
+    console.log(this.attributes);
     if (this.parentElement?.tagName === 'ANIMATED-TIMELINE') return;
     if (this.scrub) this.setupScrollAnimation();
     else this.setupInViewAnimation();
