@@ -1,0 +1,134 @@
+import { Meta, Story, Canvas } from '@storybook/blocks';
+import * as NavigationStories from './navigation.stories';
+
+<Meta title="MDX/toggle-element" of={NavigationStories} />
+
+<style>
+  {`
+    strong{
+      font-weight: bold;
+      color: #ff0000;
+    }
+  `}
+</style>
+
+# `<toggle-element>`
+
+<br />
+<br />
+## Getting started
+
+`<toggle-element>` is a web component that provides toggle functionality.
+
+<br />
+### Styling
+
+The web component is used as any html tag and can be styled via classes. By default the only style it has is `display: block` to make translate transforms easier.
+
+```html
+<toggle-element class="square"></toggle-element>
+```
+
+<toggle-element class="square" translate-x='-50px, 0' scale='1.5' duration='2'></toggle-element>
+
+### `as` attribute - using it as other html tags
+
+`toggle-element` behaves as a div HTML element by default. It can be used as any other html tag by using the `as` attribute. <strong>Please note that `toggle-element` cannot be used as a self closing tag.</strong>
+
+```html
+<toggle-element as="section"></toggle-element>
+<toggle-element as="button"></toggle-element>
+<toggle-element as="h1"></toggle-element>
+<toggle-element as="a"></toggle-element>
+```
+
+It can also be used as a container for other elements.
+
+```html
+<toggle-element opacity="0,1" duration="3">
+  <h3>This is an h3 inside an toggle-element tag</h3>
+</toggle-element>
+```
+
+<toggle-element opacity="0,1" duration="3">
+  <h3>This is an h1 inside an toggle-element</h3>
+</toggle-element>
+
+```html
+<toggle-element translate-x="100px" duration="3">
+  <div class="square"></div>
+</toggle-element>
+```
+
+<toggle-element translate-x="100px" duration="3">
+  <div class="square"></div>
+</toggle-element>
+
+## Hide/Show Functionality
+
+### Showing the Element
+
+The `show` attribute controls the visibility of the element. When you add this attribute it will trigger the animation defined by the `in-` properties.
+
+```html
+<toggle-element show in-opacity="0,1"></toggle-element>
+```
+
+```javascript
+const toggleElement = document.querySelector('toggle-element');
+toggleElement.setAttribute('show', '');
+```
+
+### Hiding the Element
+
+To hide the element, remove the show attribute in the toggle-element tag. This will trigger the animation defined by the out- properties.
+
+```html
+<toggle-element out-opacity="1,0"></toggle-element>
+```
+
+```javascript
+const toggleElement = document.querySelector('toggle-element');
+toggleElement.removeAttribute('show');
+```
+
+### Animation Prefixes
+
+The `ToggleElement` allows you to define different animations for showing and hiding the element using the `in-` and `out-` prefixes.
+
+#### Show Animation (in-)
+
+To define the animation when the element is being shown, you can use the `in-` prefix followed by the animation properties. These properties include:
+
+- `in-opacity` (Attribute: `'in-opacity'`): Specifies the opacity of the element during the show animation.
+- `in-translate-y` (Attribute: `'in-translate-y'`): Specifies the Y-axis translation of the element during the show animation.
+- `in-translate-x` (Attribute: `'in-translate-x'`): Specifies the X-axis translation of the element during the show animation.
+- `in-scale` (Attribute: `'in-scale'`): Specifies the scale of the element during the show animation.
+
+#### Examples:
+
+```html
+<toggle-element show in-opacity="0" in-translate-y="20px"></toggle-element>
+```
+
+```html
+<toggle-element show in-scale="1.2"></toggle-element>
+```
+
+### Hide Animation (out-)
+
+To define the animation when the element is being hidden, you can use the `out-` prefix followed by the animation properties. These properties include:
+
+- `out-opacity`
+  (Attribute: `'out-opacity'`): Specifies the opacity of the element during the show animation.
+- `out-translate-y` (Attribute: `'out-translate-y'`): Specifies the Y-axis translation of the element
+  during the show animation.
+- `out-translate-x` (Attribute: `'out-translate-x'`): Specifies the X-axis
+  translation of the element during the show animation.
+- `out-scale` (Attribute: `'out-scale'`):
+  Specifies the scale of the element during the show animation. - `class` (Attribute: `'class'`):
+  Specifies any additional CSS classes to apply to the element during the show animation. Example:
+
+```html
+<toggle-element show out-opacity="0" out-translate-y="20px"></toggle-element>
+```

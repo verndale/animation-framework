@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/html';
-import template from '../../html/modules/navigation.hbs';
+import template from '../../../html/modules/navigation.hbs';
 
 export type ToogleElementProps = {
   items: {
@@ -18,7 +18,7 @@ export type ToogleElementProps = {
 };
 
 const meta: Meta<ToogleElementProps> = {
-  title: 'Examples/Navigation',
+  title: 'Examples/Scroll Animations/Toggle Element',
   render: template,
   argTypes: {
     items: { control: 'object' }
