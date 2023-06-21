@@ -17,10 +17,10 @@ import * as InviewStories from './inview.stories';
 <br />
 <br />
 ## Getting started
-
 `<animated-element>` is a web component that, by default, animates itself when it enters the viewport.
 
-<br />
+
+
 ### Styling
 
 The web component is used as any html tag and can be styled via classes. By default the only style it has is `display: block` to make translate transforms easier.
@@ -59,7 +59,14 @@ It can also be used as a container for other elements.
   <div class="square"></div>
 </animated-element>
 ```
-
 <animated-element translate-x="100px" duration="3">
   <div class="square"></div>
-</animated-element>
+</animated-element> 
+
+
+### `as` same element - timeline
+
+```html
+<animated-element class="square" opacity="0, 1" scale="1, 2" translate-x="50px" times="1, 2, 3"></animated-element>
+```
+<animated-element class="square" opacity="0, 1" scale="1, 2" translate-x="50px" times="1, 2, 3"></animated-element>

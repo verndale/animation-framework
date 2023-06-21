@@ -2,8 +2,7 @@ import { LitElement, PropertyValueMap, css } from 'lit';
 import { html, unsafeStatic } from 'lit/static-html.js';
 import { customElement, property, state } from 'lit/decorators.js';
 import { animate, MotionKeyframesDefinition, inView } from 'motion';
-
-type animProps = 'opacity' | 'translateY' | 'translateX' | 'scale';
+import { animProps, animatableProperties } from '../../../src/scripts/helpers/constants';
 
 @customElement('toggle-element')
 export class ToggleElement extends LitElement {
@@ -92,11 +91,10 @@ export class ToggleElement extends LitElement {
   }
 
   private getAnimation(prefix?: 'in' | 'out') {
-    const animationProperties: animProps[] = ['opacity', 'translateY', 'translateX', 'scale'];
     const animObject: MotionKeyframesDefinition = {};
     const hasMultipleKeyframes = (value: string) => value?.includes(',');
 
-    animationProperties.forEach(property => {
+    animatableProperties.forEach(property => {
       const propertyWithPrefix = `${prefix}${property.charAt(0).toUpperCase()}${property.slice(1)}`;
       const propertyKey = (prefix ? propertyWithPrefix : property) as keyof ToggleElement;
       if (!this[propertyKey]) return;
