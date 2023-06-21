@@ -1,0 +1,19 @@
+<nav class="sidenav" data-module="sideNav">
+    <div class="sidenav__logo">LOGO</div>
+    <ul class="sidenav__items" >
+        {{#each items}}
+        <li class="sidenav__item navigation__item">
+            <div class="sidenav__menu-trigger">{{title}}</div>
+        </li>
+        {{/each}}
+    </ul>
+    {{>button className="primary" label="Cta"}}
+    {{#with animatedElement}}
+    <toggle-element hide {{#if className}}class="{{className}}"{{/if}} as="{{as}}" {{#if inOpacity}}in-opacity="{{inOpacity}}"{{/if}} {{#if outOpacity}}out-opacity="{{outOpacity}}"{{/if}} {{#if inTranslateY}}in-translate-y="{{inTranslateY}}"{{/if}} {{#if outTranslateY}}out-translate-y="{{outTranslateY}}"{{/if}} {{#if inTranslateX}}in-translate-x="{{inTranslateX}}"{{/if}} {{#if outTranslateX}}out-translate-x="{{outTranslateX}}"{{/if}}{{#if duration}} duration="{{duration}}"{{/if}}{{#if easing}} easing="{{easing}}"{{/if}}>
+        <div class="sidenav__menu-inner">
+                {{content}}
+                {{>svg name="plus" className="sidenav__menu-close"}}
+        </div>
+    </toggle-element>
+    {{/with}} 
+</nav>

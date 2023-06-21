@@ -1,7 +1,7 @@
 import { LitElement, PropertyValueMap, css } from 'lit';
 import { html, unsafeStatic } from 'lit/static-html.js';
 import { customElement, property, state } from 'lit/decorators.js';
-import { animate, MotionKeyframesDefinition, inView, AnimationControls } from 'motion';
+import { animate, MotionKeyframesDefinition, inView, AnimationControls, Easing } from 'motion';
 
 type rawAnimProps = 'opacity' | 'translateX' | 'translateY' | 'scale';
 type animatableProps = Exclude<rawAnimProps, 'translateY' | 'translateX'> | 'x' | 'y';
@@ -49,6 +49,9 @@ export class ToggleElement extends LitElement {
 
   @property({ type: Number, attribute: 'delay' })
   delay?: number = 0;
+
+  @property({ type: String, attribute: 'easing' })
+  easing?: string = 'ease-in-out';
 
   //toggle
   @property({ type: Boolean, attribute: 'show' })
@@ -106,7 +109,6 @@ export class ToggleElement extends LitElement {
       if (!this[propertyKey]) return;
 
       const propertyValue = this[propertyKey] as string;
-
       const animatablePropName = this.getAnimatableProp(property);
       animObject[animatablePropName] = this.hasMultipleKeyframes(propertyValue)
         ? propertyValue.split(',').map(this.parseUnitValue)
@@ -142,7 +144,8 @@ export class ToggleElement extends LitElement {
     const inAnimObject = this.getAnimation('in');
     this.anim = animate(this, inAnimObject, {
       duration: this.duration,
-      delay: this.delay
+      delay: this.delay,
+      easing: this.easing?.split(',').map(this.parseUnitValue) as Easing | Easing[]
     });
 
     if (this._state === 'hide-anim')
@@ -164,7 +167,8 @@ export class ToggleElement extends LitElement {
     const outAnimObject = this.getAnimation('out');
     this.anim = animate(this, outAnimObject, {
       duration: this.duration,
-      delay: this.delay
+      delay: this.delay,
+      easing: this.easing?.split(',').map(this.parseUnitValue) as Easing | Easing[]
     });
 
     if (this._state === 'show-anim')

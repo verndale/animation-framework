@@ -19,6 +19,11 @@ const modules: Organism[] = [
     name: 'navigation',
     loader: () => import('./modules/navigation'),
     styles: () => import('../scss/modules/navigation.scss')
+  },
+  {
+    name: 'sideNav',
+    loader: () => import('./modules/sideNav'),
+    styles: () => import('../scss/modules/navigation.scss')
   }
 ];
 
