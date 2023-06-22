@@ -17,7 +17,7 @@ export type ToogleElementProps = {
     outTranslateX?: string;
     content: string;
     duration: number;
-    easing: string | number[];
+    easing: string;
   };
 };
 
@@ -52,7 +52,7 @@ export const SideNavigation: Story = {
       content: 'Choose your smart mailbox.',
       className: 'navigation__menu',
       duration: 0.8,
-      easing: [0.77, 0, 0.175, 1]
+      easing: '0.77, 0, 0.175, 1'
     }
   }
 };

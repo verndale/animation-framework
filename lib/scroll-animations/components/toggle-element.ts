@@ -1,7 +1,8 @@
 import { LitElement, PropertyValueMap, css } from 'lit';
-import { html, unsafeStatic } from 'lit/static-html.js';
-import { customElement, property, state } from 'lit/decorators.js';
+import { html } from 'lit/static-html.js';
+import { customElement, property } from 'lit/decorators.js';
 import { animate, MotionKeyframesDefinition, inView, AnimationControls, Easing } from 'motion';
+import { eventBus } from '../eventBus';
 
 type rawAnimProps = 'opacity' | 'translateX' | 'translateY' | 'scale';
 type animatableProps = Exclude<rawAnimProps, 'translateY' | 'translateX'> | 'x' | 'y';
@@ -54,11 +55,11 @@ export class ToggleElement extends LitElement {
   easing?: string = 'ease-in-out';
 
   //toggle
-  @property({ type: Boolean, attribute: 'show' })
+  @property({ type: Boolean, attribute: 'show', reflect: true })
   show?: boolean;
   @property({ type: Boolean, attribute: 'hide', reflect: true })
   hide?: boolean;
-  @state()
+  @property({ type: Boolean })
   protected _state = 'hidden';
   @property()
   protected anim?: AnimationControls;
@@ -83,20 +84,40 @@ export class ToggleElement extends LitElement {
   outScale?: string;
   @property({ type: String, attribute: 'class' })
   class?: string;
+  @property({ type: Boolean, attribute: 'trigger' })
+  trigger?: boolean;
+  @property({ type: String, attribute: 'triggerid' })
+  triggerid?: string;
+
+  handleShowEvent = () => {
+    this.show = !this.show;
+  };
+
+  handleTrigger() {
+    if (this.triggerid) eventBus.emit(this.triggerid, true);
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    if (this.trigger) return;
+    eventBus.on(this.id, this.handleShowEvent);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    if (this.trigger) return;
+    eventBus.off(this.id, this.handleShowEvent);
+  }
 
   render() {
-    const componentClass = this._state === 'hidden' ? 'hidden' : '';
-
-    return html`<${unsafeStatic(this.as)} class=${componentClass}><slot></slot></${unsafeStatic(
-      this.as
-    )}>`;
+    return html`<slot @click=${this.trigger ? this.handleTrigger : undefined}></slot>`;
   }
 
   async updated(changedProperties: PropertyValueMap<unknown> | Map<PropertyKey, unknown>) {
     super.updated(changedProperties);
     if (this.parentElement?.tagName === 'ANIMATED-TIMELINE') return;
     if (changedProperties.has('show' as never)) this.setupToggleAnimation();
-    else this.setupInViewAnimation();
+    else if (!changedProperties.has('_state' as never)) this.setupInViewAnimation();
   }
 
   private getAnimation(prefix?: 'in' | 'out') {
@@ -104,15 +125,18 @@ export class ToggleElement extends LitElement {
     const animObject: MotionKeyframesDefinition = {};
 
     animationProperties.forEach(property => {
-      const inOutProperty = `${prefix}${this.capitalizeFirstLetter(property)}`;
-      const propertyKey = (prefix ? inOutProperty : property) as keyof ToggleElement;
-      if (!this[propertyKey]) return;
-
-      const propertyValue = this[propertyKey] as string;
-      const animatablePropName = this.getAnimatableProp(property);
-      animObject[animatablePropName] = this.hasMultipleKeyframes(propertyValue)
-        ? propertyValue.split(',').map(this.parseUnitValue)
-        : (animObject[animatablePropName] = this.parseUnitValue(propertyValue));
+      const inOutProp = `${prefix}${this.capitalizeFirstLetter(property)}` as keyof ToggleElement;
+      if (this[inOutProp]) {
+        const propertyValue = this[inOutProp] as string;
+        const animatablePropName = this.getAnimatableProp(property);
+        animObject[animatablePropName] = this.getTransformedValue(propertyValue);
+      } else if (this[property]) {
+        const propertyValue = this[property] as string;
+        const animatablePropName = this.getAnimatableProp(property);
+        if (prefix === 'out')
+          animObject[animatablePropName] = this.getTransformedValue(propertyValue).reverse();
+        else animObject[animatablePropName] = this.getTransformedValue(propertyValue);
+      }
     });
 
     return animObject;
@@ -145,7 +169,7 @@ export class ToggleElement extends LitElement {
     this.anim = animate(this, inAnimObject, {
       duration: this.duration,
       delay: this.delay,
-      easing: this.easing?.split(',').map(this.parseUnitValue) as Easing | Easing[]
+      easing: this.easing?.split(',').map(this.getNumberOrDimensionalValue) as Easing | Easing[]
     });
 
     if (this._state === 'hide-anim')
@@ -168,7 +192,7 @@ export class ToggleElement extends LitElement {
     this.anim = animate(this, outAnimObject, {
       duration: this.duration,
       delay: this.delay,
-      easing: this.easing?.split(',').map(this.parseUnitValue) as Easing | Easing[]
+      easing: this.easing?.split(',').map(this.getNumberOrDimensionalValue) as Easing | Easing[]
     });
 
     if (this._state === 'show-anim')
@@ -183,13 +207,15 @@ export class ToggleElement extends LitElement {
     });
   }
 
-  private parseUnitValue = (value: string) => {
+  getTransformedValue = (propertyValue: string) => {
+    return propertyValue.split(',').map(this.getNumberOrDimensionalValue);
+  };
+
+  private getNumberOrDimensionalValue = (value: string) => {
     const isNumberWithoutUnit = /^-?\d+(\.\d+)?$/;
     if (isNumberWithoutUnit.test(value)) return Number(value);
     else return value;
   };
-
-  private hasMultipleKeyframes = (value: string) => value?.includes(',');
 
   private capitalizeFirstLetter = (str: string) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
