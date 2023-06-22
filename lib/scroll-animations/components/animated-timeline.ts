@@ -13,15 +13,18 @@ import {
 export class AnimatedTimeline extends LitElement {
   static styles = css`
     :host {
-      display: block;
+      inline-size: fit-content;
     }
   `;
 
   @property({ type: String })
   as = 'div';
 
+  @property({ type: Number, attribute: 'amount-visible' })
+  amountVisible = 0;
+
   render() {
-    return html`<${unsafeStatic(this.as)}><slot></slot></${unsafeStatic(this.as)}>`;
+    return html`<slot></slot>`;
   }
 
   async updated(changedProperties: PropertyValueMap<unknown> | Map<PropertyKey, unknown>) {
@@ -60,6 +63,8 @@ export class AnimatedTimeline extends LitElement {
     const sequence = [] as TimelineDefinition;
     this.querySelectorAll('animated-element').forEach((el: HTMLElement) => {
       const attributes = el.getAttributeNames();
+      console.log(attributes);
+      if (attributes.includes('scrub')) return;
       const animObject = this.getAnimation(el, attributes);
       const configObject = {
         duration: el.getAttribute('duration') ?? 1,
@@ -67,9 +72,15 @@ export class AnimatedTimeline extends LitElement {
       } as AnimationListOptions;
       sequence.push([el, animObject, configObject]);
     });
-    inView(this, () => {
-      timeline(sequence);
-    });
+    inView(
+      this,
+      () => {
+        timeline(sequence);
+      },
+      {
+        amount: this.amountVisible
+      }
+    );
   }
 }
 
