@@ -2,7 +2,6 @@ import { LitElement, PropertyValueMap, css } from 'lit';
 import { html } from 'lit/static-html.js';
 import { customElement, property } from 'lit/decorators.js';
 import { animate, MotionKeyframesDefinition, inView, AnimationControls, Easing } from 'motion';
-import { eventBus } from '../eventBus';
 
 type rawAnimProps = 'opacity' | 'translateX' | 'translateY' | 'scale';
 type animatableProps = Exclude<rawAnimProps, 'translateY' | 'translateX'> | 'x' | 'y';
@@ -84,33 +83,28 @@ export class ToggleElement extends LitElement {
   outScale?: string;
   @property({ type: String, attribute: 'class' })
   class?: string;
-  @property({ type: Boolean, attribute: 'trigger' })
-  trigger?: boolean;
+  @property({ type: String, attribute: 'trigger' })
+  trigger?: string;
   @property({ type: String, attribute: 'triggerid' })
   triggerid?: string;
 
-  handleShowEvent = () => {
-    this.show = !this.show;
-  };
-
   handleTrigger() {
-    if (this.triggerid) eventBus.emit(this.triggerid, true);
-  }
-
-  connectedCallback() {
-    super.connectedCallback();
-    if (this.trigger) return;
-    eventBus.on(this.id, this.handleShowEvent);
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-    if (this.trigger) return;
-    eventBus.off(this.id, this.handleShowEvent);
+    const trigered = document.querySelector(`#${this.triggerid}`);
+    const hasShow = trigered?.hasAttribute('show');
+    console.log(hasShow);
+    if (hasShow) {
+      trigered?.removeAttribute('show');
+    } else {
+      trigered?.setAttribute('show', '');
+    }
   }
 
   render() {
-    return html`<slot @click=${this.trigger ? this.handleTrigger : undefined}></slot>`;
+    return html`<slot
+      @click=${this.trigger === 'click' ? this.handleTrigger : undefined}
+      @mouseover=${this.trigger === 'hover' ? this.handleTrigger : undefined}
+      @mouseleave=${this.trigger === 'hover' ? this.handleTrigger : undefined}
+    ></slot>`;
   }
 
   async updated(changedProperties: PropertyValueMap<unknown> | Map<PropertyKey, unknown>) {
