@@ -4,6 +4,10 @@ import template from '../../../html/modules/sidenav.hbs';
 export type ToogleElementProps = {
   items: {
     title: string;
+    className: string;
+    inTranslateY: string;
+    outTranslateY: string;
+    content?: string;
   }[];
   animatedElement: {
     as: string;
@@ -36,21 +40,34 @@ export const SideNavigation: Story = {
   args: {
     items: [
       {
-        title: 'Smart mailboxes'
+        title: 'Smart mailboxes',
+        className: 'sidenav__inline-menu-item',
+        inTranslateY: '-200px,0',
+        outTranslateY: '0,-200px',
+        content: '<ul><li>Menu item 1</li><li>Menu item 2</li><li>Menu item 3</li></ul>'
       },
       {
-        title: 'How it works'
+        title: 'How it works',
+        className: 'sidenav__inline-menu-item',
+        inTranslateY: '-200px,0',
+        outTranslateY: '0,-200px',
+        content: '<ul><li>Menu item 1</li><li>Menu item 2</li></ul>'
       },
       {
-        title: 'The app'
+        title: 'The app',
+        className: 'sidenav__inline-menu-item',
+        inTranslateY: '-200px,0',
+        outTranslateY: '0,-200px',
+        content: '<ul><li>Menu item 1</li></ul>'
       }
     ],
     animatedElement: {
       as: 'div',
       inTranslateX: '-36vw,0',
       outTranslateX: '0,-36vw',
-      content: 'Choose your smart mailbox.',
-      className: 'navigation__menu',
+      content:
+        '<div><p>Choose your smart mailbox</p><ul><li>Menu item 1</li><li>Menu item 2</li><li>Menu item 3</li></ul></div>',
+      className: 'sidenav__side-menu',
       duration: 0.8,
       easing: '0.77, 0, 0.175, 1'
     }

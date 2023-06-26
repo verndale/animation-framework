@@ -1,22 +1,27 @@
-<nav class="sidenav" data-module="sideNav">
+<nav class="sidenav">
     <div class="sidenav__logo">LOGO</div>
     <ul class="sidenav__items">
         {{#each items}}
-        <li class="sidenav__item navigation__item">
-            <div class="sidenav__menu-trigger">{{title}}</div>
+        <li class="sidenav__item">
+            <toggle-element trigger-type="click" trigger-controls="inline-menu-{{@index}}" trigger-group>
+                <div class="sidenav__menu-trigger">{{title}}</div>
+            </toggle-element>
+            <toggle-element hide id="inline-menu-{{@index}}" {{#if className}}class="{{className}}"{{/if}} as="{{as}}" {{#if inOpacity}}in-opacity="{{inOpacity}}"{{/if}} {{#if outOpacity}}out-opacity="{{outOpacity}}"{{/if}} {{#if inTranslateY}}in-translate-y="{{inTranslateY}}"{{/if}} {{#if outTranslateY}}out-translate-y="{{outTranslateY}}"{{/if}}>
+                 {{{content}}}
+            </toggle-element>
         </li>
         {{/each}}
     </ul>
-
-    <toggle-element trigger="click" triggerid="menu">
+    <toggle-element trigger-type="click" trigger-controls="sidenav__side-menu">
       {{>button className="primary" label="Cta"}}
     </toggle-element>
-
     {{#with animatedElement}}
-    <toggle-element id="menu" hide {{#if className}}class="{{className}}"{{/if}} as="{{as}}" {{#if inOpacity}}in-opacity="{{inOpacity}}"{{/if}} {{#if outOpacity}}out-opacity="{{outOpacity}}"{{/if}} {{#if inTranslateY}}in-translate-y="{{inTranslateY}}"{{/if}} {{#if outTranslateY}}out-translate-y="{{outTranslateY}}"{{/if}} {{#if inTranslateX}}in-translate-x="{{inTranslateX}}"{{/if}} {{#if outTranslateX}}out-translate-x="{{outTranslateX}}"{{/if}}{{#if duration}} duration="{{duration}}"{{/if}}{{#if easing}} easing="{{easing}}"{{/if}}>
+    <toggle-element id="sidenav__side-menu" triggered-by="sidenav__close" hide {{#if className}}class="{{className}}"{{/if}} as="{{as}}" {{#if inOpacity}}in-opacity="{{inOpacity}}"{{/if}} {{#if outOpacity}}out-opacity="{{outOpacity}}"{{/if}} {{#if inTranslateY}}in-translate-y="{{inTranslateY}}"{{/if}} {{#if outTranslateY}}out-translate-y="{{outTranslateY}}"{{/if}} {{#if inTranslateX}}in-translate-x="{{inTranslateX}}"{{/if}} {{#if outTranslateX}}out-translate-x="{{outTranslateX}}"{{/if}}{{#if duration}} duration="{{duration}}"{{/if}}{{#if easing}} easing="{{easing}}"{{/if}}>
         <div class="sidenav__menu-inner">
-            {{content}}
-            {{>svg name="plus" className="sidenav__menu-close"}}
+            {{{content}}}
+            <div id="sidenav__close">
+              {{>svg name="plus" className="sidenav__menu-close"}}
+            </div>
         </div>
     </toggle-element>
     {{/with}} 

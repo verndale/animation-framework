@@ -18,12 +18,12 @@ import * as NavigationStories from './navigation.stories';
 <br />
 ## Getting started
 
-`<toggle-element>` is a web component that provides toggle functionality.
+`<toggle-element>` is a web component that provides toggle functionality to hide and show an element.
 
 <br />
 ### Styling
 
-The web component is used as any html tag and can be styled via classes. By default the only style it has is `display: block` to make translate transforms easier.
+The web component can be styled via classes.
 
 ```html
 <toggle-element class="square"></toggle-element>
@@ -31,27 +31,16 @@ The web component is used as any html tag and can be styled via classes. By defa
 
 <toggle-element class="square" translate-x='-50px, 0' scale='1.5' duration='2'></toggle-element>
 
-### `as` attribute - using it as other html tags
-
-`toggle-element` behaves as a div HTML element by default. It can be used as any other html tag by using the `as` attribute. <strong>Please note that `toggle-element` cannot be used as a self closing tag.</strong>
-
-```html
-<toggle-element as="section"></toggle-element>
-<toggle-element as="button"></toggle-element>
-<toggle-element as="h1"></toggle-element>
-<toggle-element as="a"></toggle-element>
-```
-
-It can also be used as a container for other elements.
+Toggle element can be used as a container for other elements.
 
 ```html
 <toggle-element opacity="0,1" duration="3">
-  <h3>This is an h3 inside an toggle-element tag</h3>
+  <h3>This is an h3 inside a toggle-element tag</h3>
 </toggle-element>
 ```
 
 <toggle-element opacity="0,1" duration="3">
-  <h3>This is an h1 inside an toggle-element</h3>
+  <h3>This is an h1 inside a toggle-element</h3>
 </toggle-element>
 
 ```html
@@ -68,67 +57,90 @@ It can also be used as a container for other elements.
 
 ### Showing the Element
 
-The `show` attribute controls the visibility of the element. When you add this attribute it will trigger the animation defined by the `in-` properties.
+The `show` attribute controls the visibility of the element. When you add the `show` attribute it will trigger the enter animation.
+
+```html
+<toggle-element show opacity="0,1"></toggle-element>
+```
+
+### Hiding the Element
+
+To hide the element, remove the show attribute in the toggle-element tag. This will trigger the exit animation.
+
+```html
+<toggle-element opacity="0,1"></toggle-element>
+```
+
+### Hide and Show triggers
+
+You can add triggers to show or hide the element by defining the `trigger-type`, `trigger-controls`, and `triggered-by` attributes.
+
+#### Trigger type
+
+The trigger-type specifies the type of event that triggers the show/hide action. Trigger type can be click or hover.
+
+```html
+<toggle-element trigger-type="click"></toggle-element>
+```
+
+#### Trigger controls
+
+The trigger-controls attribute should contain the ID of the element that will be shown or hidden.
+
+```html
+<toggle-element trigger-controls="element-id" trigger-type="click"></toggle-element>
+```
+
+```html
+<toggle-element id="element-id" opacity="1,0"></toggle-element>
+```
+
+#### Triggered by
+
+The triggered-by attribute should contain the ID of the element that triggers the action.
+
+```html
+<toggle-element trigger-by="element-id"></toggle-element>
+```
+
+### Enter and Exit animations
+
+The `ToggleElement` allows you to define different animations using animatable CSS properties.
+
+#### Default animatable property
+
+If you define an animatable property such as `opacity="1,0"` it will animate the toggle element from an opacity of 0 to an opacity of 1 when it appears.
+Additionally, when you hide the toggle element, it will transition from an opacity of 1 to an opacity of 0.
+
+```html
+<toggle-element show opacity="0,1"></toggle-element>
+```
+
+#### Custom enter animation
+
+To define a custom enter animation you can use the `out-` prefix followed by the animation property.
 
 ```html
 <toggle-element show in-opacity="0,1"></toggle-element>
 ```
 
-```javascript
-const toggleElement = document.querySelector('toggle-element');
-toggleElement.setAttribute('show', '');
-```
+#### Custom exit animation
 
-### Hiding the Element
-
-To hide the element, remove the show attribute in the toggle-element tag. This will trigger the animation defined by the out- properties.
+To define a custom exit animation you can use the `out-` prefix followed by the animation property.
 
 ```html
-<toggle-element out-opacity="1,0"></toggle-element>
+<toggle-element show out-opacity="1,0"></toggle-element>
 ```
 
-```javascript
-const toggleElement = document.querySelector('toggle-element');
-toggleElement.removeAttribute('show');
-```
+### Multiple animations
 
-### Animation Prefixes
-
-The `ToggleElement` allows you to define different animations for showing and hiding the element using the `in-` and `out-` prefixes.
-
-#### Show Animation (in-)
-
-To define the animation when the element is being shown, you can use the `in-` prefix followed by the animation properties. These properties include:
-
-- `in-opacity` (Attribute: `'in-opacity'`): Specifies the opacity of the element during the show animation.
-- `in-translate-y` (Attribute: `'in-translate-y'`): Specifies the Y-axis translation of the element during the show animation.
-- `in-translate-x` (Attribute: `'in-translate-x'`): Specifies the X-axis translation of the element during the show animation.
-- `in-scale` (Attribute: `'in-scale'`): Specifies the scale of the element during the show animation.
-
-#### Examples:
+You can define multiple enter and exit animations combining the methods above
 
 ```html
-<toggle-element show in-opacity="0" in-translate-y="20px"></toggle-element>
-```
-
-```html
-<toggle-element show in-scale="1.2"></toggle-element>
-```
-
-### Hide Animation (out-)
-
-To define the animation when the element is being hidden, you can use the `out-` prefix followed by the animation properties. These properties include:
-
-- `out-opacity`
-  (Attribute: `'out-opacity'`): Specifies the opacity of the element during the show animation.
-- `out-translate-y` (Attribute: `'out-translate-y'`): Specifies the Y-axis translation of the element
-  during the show animation.
-- `out-translate-x` (Attribute: `'out-translate-x'`): Specifies the X-axis
-  translation of the element during the show animation.
-- `out-scale` (Attribute: `'out-scale'`):
-  Specifies the scale of the element during the show animation. - `class` (Attribute: `'class'`):
-  Specifies any additional CSS classes to apply to the element during the show animation. Example:
-
-```html
-<toggle-element show out-opacity="0" out-translate-y="20px"></toggle-element>
+<toggle-element
+  show
+  opacity="0,1"
+  in-translate-y="-200px, 0"
+  out-translate-y="0,-100px"
+></toggle-element>
 ```

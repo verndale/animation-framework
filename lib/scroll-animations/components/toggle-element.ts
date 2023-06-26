@@ -1,10 +1,9 @@
 import { LitElement, PropertyValueMap, css } from 'lit';
 import { html } from 'lit/static-html.js';
 import { customElement, property } from 'lit/decorators.js';
-import { animate, MotionKeyframesDefinition, inView, AnimationControls, Easing } from 'motion';
-
-type rawAnimProps = 'opacity' | 'translateX' | 'translateY' | 'scale';
-type animatableProps = Exclude<rawAnimProps, 'translateY' | 'translateX'> | 'x' | 'y';
+import { animate, inView, AnimationControls, Easing } from 'motion';
+import { animatableProperties, animProps } from '../../../src/scripts/helpers/constants';
+import { camelize } from '../../../src/scripts/helpers/utils';
 
 @customElement('toggle-element')
 export class ToggleElement extends LitElement {
@@ -22,15 +21,6 @@ export class ToggleElement extends LitElement {
 
   @property({ type: String, attribute: 'root-margin' })
   rootMargin?: string;
-
-  @property({ type: String, attribute: 'opacity' })
-  opacity?: string;
-  @property({ type: String, attribute: 'translate-x' })
-  translateX?: string;
-  @property({ type: String, attribute: 'translate-y' })
-  translateY?: string;
-  @property({ type: String, attribute: 'scale' })
-  scale?: string;
 
   @property({ type: Number, attribute: 'amount-visible' })
   amountVisible?: number;
@@ -65,45 +55,55 @@ export class ToggleElement extends LitElement {
   @property({ type: Number })
   protected _currentTime?: number;
 
-  @property({ type: String, attribute: 'in-opacity' })
-  inOpacity?: string;
-  @property({ type: String, attribute: 'out-opacity' })
-  outOpacity?: string;
-  @property({ type: String, attribute: 'in-translate-y' })
-  inTranslateY?: string;
-  @property({ type: String, attribute: 'out-translate-y' })
-  outTranslateY?: string;
-  @property({ type: String, attribute: 'in-translate-x' })
-  inTranslateX?: string;
-  @property({ type: String, attribute: 'out-translate-x' })
-  outTranslateX?: string;
-  @property({ type: String, attribute: 'in-scale' })
-  inScale?: string;
-  @property({ type: String, attribute: 'out-scale' })
-  outScale?: string;
   @property({ type: String, attribute: 'class' })
   class?: string;
-  @property({ type: String, attribute: 'trigger' })
-  trigger?: string;
-  @property({ type: String, attribute: 'triggerid' })
-  triggerid?: string;
+  @property({ type: String, attribute: 'trigger-type' })
+  triggerType?: string;
+  @property({ type: String, attribute: 'trigger-controls' })
+  triggerControls?: string;
+  @property({ type: String, attribute: 'triggered-by' })
+  triggeredBy?: string;
+  @property({ type: Boolean, attribute: 'trigger-group' })
+  triggerGroup?: boolean;
 
   handleTrigger() {
-    const trigered = document.querySelector(`#${this.triggerid}`);
-    const hasShow = trigered?.hasAttribute('show');
-    console.log(hasShow);
+    const triggeredElement = document.querySelector(`#${this.triggerControls}`);
+    const hasShow = triggeredElement?.hasAttribute('show');
     if (hasShow) {
-      trigered?.removeAttribute('show');
+      triggeredElement?.removeAttribute('show');
     } else {
-      trigered?.setAttribute('show', '');
+      triggeredElement?.setAttribute('show', '');
     }
+    const triggerControls = this.triggerControls?.split('-');
+    triggerControls?.pop();
+    const triggerControlsWithoutPrefix = triggerControls?.join('-');
+    const triggerGroup = document.querySelectorAll(`[id^="${triggerControlsWithoutPrefix}"]`);
+    triggerGroup.forEach(element => {
+      if (triggeredElement !== element) {
+        element.removeAttribute('show');
+      }
+    });
+  }
+
+  handleShow = () => (this.show = !this.show);
+
+  connectedCallback() {
+    super.connectedCallback();
+    const closeBtn = this.querySelector(`#${this.triggeredBy}`);
+    if (!closeBtn) return;
+    this.addEventListener('click', this.handleShow);
+  }
+
+  disconnectedCallback(): void {
+    super.disconnectedCallback();
+    this.removeEventListener('click', this.handleShow);
   }
 
   render() {
     return html`<slot
-      @click=${this.trigger === 'click' ? this.handleTrigger : undefined}
-      @mouseover=${this.trigger === 'hover' ? this.handleTrigger : undefined}
-      @mouseleave=${this.trigger === 'hover' ? this.handleTrigger : undefined}
+      @click=${this.triggerType === 'click' ? this.handleTrigger : undefined}
+      @mouseover=${this.triggerType === 'hover' ? this.handleTrigger : undefined}
+      @mouseleave=${this.triggerType === 'hover' ? this.handleTrigger : undefined}
     ></slot>`;
   }
 
@@ -114,22 +114,28 @@ export class ToggleElement extends LitElement {
     else if (!changedProperties.has('_state' as never)) this.setupInViewAnimation();
   }
 
-  private getAnimation(prefix?: 'in' | 'out') {
-    const animationProperties: rawAnimProps[] = ['opacity', 'scale', 'translateY', 'translateX'];
-    const animObject: MotionKeyframesDefinition = {};
+  reverseIfOut = (value: string[], prefix?: 'in' | 'out') => {
+    if (prefix === 'out') return value.reverse();
+    return value;
+  };
 
-    animationProperties.forEach(property => {
-      const inOutProp = `${prefix}${this.capitalizeFirstLetter(property)}` as keyof ToggleElement;
-      if (this[inOutProp]) {
-        const propertyValue = this[inOutProp] as string;
-        const animatablePropName = this.getAnimatableProp(property);
-        animObject[animatablePropName] = this.getTransformedValue(propertyValue);
-      } else if (this[property]) {
-        const propertyValue = this[property] as string;
-        const animatablePropName = this.getAnimatableProp(property);
-        if (prefix === 'out')
-          animObject[animatablePropName] = this.getTransformedValue(propertyValue).reverse();
-        else animObject[animatablePropName] = this.getTransformedValue(propertyValue);
+  private getAnimation(prefix?: 'in' | 'out') {
+    const animObject: any = {};
+
+    Array(...this.attributes).forEach(element => {
+      if (element.name.includes(`${prefix}-`)) {
+        const [, property] = element.name.split(`${prefix}-`);
+        if (animatableProperties.includes(camelize(property) as animProps)) {
+          animObject[camelize(property)] = element.value.includes(',')
+            ? element.value.split(',')
+            : element.value;
+        }
+      } else {
+        if (animatableProperties.includes(camelize(element.name) as animProps)) {
+          animObject[camelize(element.name)] = element.value.includes(',')
+            ? this.reverseIfOut(element.value.split(','), prefix)
+            : element.value;
+        }
       }
     });
 
@@ -209,16 +215,6 @@ export class ToggleElement extends LitElement {
     const isNumberWithoutUnit = /^-?\d+(\.\d+)?$/;
     if (isNumberWithoutUnit.test(value)) return Number(value);
     else return value;
-  };
-
-  private capitalizeFirstLetter = (str: string) => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  };
-
-  private getAnimatableProp = (property: rawAnimProps): animatableProps => {
-    if (property === 'translateX') return 'x';
-    if (property === 'translateY') return 'y';
-    return property;
   };
 }
 
