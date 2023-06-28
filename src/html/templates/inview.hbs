@@ -34,46 +34,65 @@
           </div>
           
           <div class="flex-center">
-          <animated-element class="inview-example__animated-square" opacity="0, 1" scale="2, 1" translate-x="-100%, 0" rotate="45deg"  times="0.5, 0.5, 1, 2"></animated-element>
+          <animated-element class="inview-example__animated-square" opacity="0, 1"  translate-x="-100%, 0" scale="1, 2" rotate="45deg" times="0.5, 0.5, 1">
+          </animated-element>
           </div>
       </div>
-      <div class="content-section container">
-            <animated-timeline class="flex">
-              <animated-element opacity="1" class="animated-opacity overflow-hidden rounded">
-                <animated-element scrub translate-y='-50px, 50px' class="block" start-offset="start end">
-                  <img class="parallax-picture" src="//cdn.shopify.com/s/files/1/0609/7744/7071/files/slider3.jpg?crop=center&amp;height=370&amp;v=1653647271&amp;width=545" srcset="//cdn.shopify.com/s/files/1/0609/7744/7071/files/slider3.jpg?crop=center&amp;height=740&amp;v=1653647271&amp;width=1090 2x" width="545" height="370" loading="lazy" alt="">
-               </animated-element>
-              </animated-element>
-                            <animated-element opacity="1" class="animated-opacity overflow-hidden rounded">
-                <animated-element scrub translate-y='-50px, 50px' class="block" start-offset="start end">
-                  <img class="parallax-picture" src="//cdn.shopify.com/s/files/1/0609/7744/7071/files/home2.jpg?crop=center&amp;height=370&amp;v=1669139238&amp;width=545" srcset="//cdn.shopify.com/s/files/1/0609/7744/7071/files/home2.jpg?crop=center&amp;height=740&amp;v=1669139238&amp;width=1090 2x" width="545" height="370" loading="lazy" alt="">
-               </animated-element>
-              </animated-element>
-              <animated-element opacity="1" class="animated-opacity overflow-hidden rounded">
-                <animated-element scrub translate-y='-50px, 50px' class="block" start-offset="start end">
-                  <img class="parallax-picture" src="//cdn.shopify.com/s/files/1/0609/7744/7071/files/slider1_9bf7a88c-98e5-4a34-8b4c-b7375d064be0.jpg?crop=center&amp;height=370&amp;v=1653650904&amp;width=545" srcset="//cdn.shopify.com/s/files/1/0609/7744/7071/files/slider1_9bf7a88c-98e5-4a34-8b4c-b7375d064be0.jpg?crop=center&amp;height=740&amp;v=1653650904&amp;width=1090 2x" width="545" height="370" loading="lazy" alt="">
-               </animated-element>
-              </animated-element>
-            </animated-timeline>
+      <div class="content-section container flex">
+        <animated-timeline class="block" amount-visible="1" >
+          <animated-element opacity="1" class="animated-opacity overflow-hidden block rounded">
+            <animated-element scrub translate-y='-50px, 50px' class="block" start-offset="start end">
+              <img class="parallax-picture" src="https://verndale-image-tools.azurewebsites.net/id/ACt8ycSzpdE?w=540&h=370"  width="545" height="370" alt="">
+            </animated-element>
+          </animated-element>
+          <animated-element opacity="1" translate-y="50px, 0"class="animated-opacity my-50 block">
+            <p class="my-50">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, hic nostrum. Odio inventore velit sit minima totam quidem eius consectetur deleniti, aperiam architecto repellendus sequi alias laborum debitis quas modi.
+            </p>
+          </animated-element>
+        </animated-timeline>
+        <animated-timeline class="block" amount-visible="1" delay="1">
+          <animated-element opacity="1" class="animated-opacity overflow-hidden block rounded">
+            <animated-element scrub translate-y='-50px, 50px' class="block" start-offset="start end">
+              <img class="parallax-picture" src="https://verndale-image-tools.azurewebsites.net/id/N2zk9yXjmLA?w=540&h=370"  width="545" height="370" alt="">
+            </animated-element>
+          </animated-element>
+          <animated-element opacity="1" translate-y="50px, 0" class="animated-opacity my-50 block">
+            <p class="my-50">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, hic nostrum. Odio inventore velit sit minima totam quidem eius consectetur deleniti, aperiam architecto repellendus sequi alias laborum debitis quas modi.
+            </p>
+          </animated-element>
+        </animated-timeline>
+        <animated-timeline class="block" amount-visible="1" delay="2">
+          <animated-element opacity="1" class="animated-opacity overflow-hidden block rounded">
+            <animated-element scrub translate-y='-50px, 50px' class="block" start-offset="start end">
+              <img class="parallax-picture" src="https://verndale-image-tools.azurewebsites.net/id/ACt8ycSzpdE?w=540&h=370"  width="545" height="370" alt="">
+            </animated-element>
+          </animated-element>
+          <animated-element opacity="1" translate-y="50px, 0"class="animated-opacity my-50 block">
+            <p class="my-50">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, hic nostrum. Odio inventore velit sit minima totam quidem eius consectetur deleniti, aperiam architecto repellendus sequi alias laborum debitis quas modi.
+            </p>
+          </animated-element>
+        </animated-timeline>
       </div>
-      <div class="content-section container">
-            <animated-timeline class="flex">
-              <animated-element opacity="1" translate-y="50px, 0"class="animated-opacity">
-                <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, hic nostrum. Odio inventore velit sit minima totam quidem eius consectetur deleniti, aperiam architecto repellendus sequi alias laborum debitis quas modi.
-                </p>
-              </animated-element>
-              <animated-element opacity="1" translate-y="50px, 0"class="animated-opacity">
-                 <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, hic nostrum. Odio inventore velit sit minima totam quidem eius consectetur deleniti, aperiam architecto repellendus sequi alias laborum debitis quas modi.
-                </p>
-              </animated-element >
-              <animated-element opacity="1" translate-y="50px, 0"class="animated-opacity">
-                <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, hic nostrum. Odio inventore velit sit minima totam quidem eius consectetur deleniti, aperiam architecto repellendus sequi alias laborum debitis quas modi.
-                </p>
-              </animated-element>
-            </animated-timeline>
+      <div class="content-section container flex">
+        <div class="sticky">
+          <animated-element opacity="1" class="animated-opacity">
+            <h1 class="section-text">Sticky Text</h1>
+          </animated-element>
+        </div>
+        <div class="flex flex-col">
+          <animated-element scrub translate-y='-50px, 50px' class="block" start-offset="start end">
+             <img src="//cdn.shopify.com/s/files/1/0609/7744/7071/files/app2.jpg?crop=center&amp;height=775&amp;v=1653398290&amp;width=545" width="545" height="775" loading="lazy" alt="">
+            </animated-element>
+            <animated-element scrub translate-y='-50px, 50px' class="block" start-offset="start end">
+              <img src="//cdn.shopify.com/s/files/1/0609/7744/7071/files/app2.jpg?crop=center&amp;height=775&amp;v=1653398290&amp;width=545" width="545" height="775" loading="lazy" alt="">
+            </animated-element>
+            <animated-element scrub translate-y='-50px, 50px' class="block" start-offset="start end">
+              <img src="//cdn.shopify.com/s/files/1/0609/7744/7071/files/app2.jpg?crop=center&amp;height=775&amp;v=1653398290&amp;width=545" width="545" height="775" loading="lazy" alt="">
+            </animated-element>
+        </div>
       </div>
   </main>
 

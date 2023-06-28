@@ -78,9 +78,7 @@ export class ToggleElement extends LitElement {
   render() {
     const componentClass = this._state === 'hidden' ? 'hidden' : '';
 
-    return html`<${unsafeStatic(this.as)} class=${componentClass}><slot></slot></${unsafeStatic(
-      this.as
-    )}>`;
+    return html`<slot></slot>`;
   }
 
   async updated(changedProperties: PropertyValueMap<unknown> | Map<PropertyKey, unknown>) {

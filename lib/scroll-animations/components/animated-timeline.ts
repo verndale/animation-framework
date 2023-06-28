@@ -1,5 +1,5 @@
 import { LitElement, PropertyValueMap, css } from 'lit';
-import { html, unsafeStatic } from 'lit/static-html.js';
+import { html } from 'lit/static-html.js';
 import { customElement, property } from 'lit/decorators.js';
 import {
   AnimationListOptions,
@@ -22,6 +22,12 @@ export class AnimatedTimeline extends LitElement {
 
   @property({ type: Number, attribute: 'amount-visible' })
   amountVisible = 0;
+
+  @property({ type: Number, attribute: 'delay' })
+  delay = 0;
+
+  @property({ type: Number, attribute: 'duration' })
+  duration?: number;
 
   render() {
     return html`<slot></slot>`;
@@ -63,7 +69,6 @@ export class AnimatedTimeline extends LitElement {
     const sequence = [] as TimelineDefinition;
     this.querySelectorAll('animated-element').forEach((el: HTMLElement) => {
       const attributes = el.getAttributeNames();
-      console.log(attributes);
       if (attributes.includes('scrub')) return;
       const animObject = this.getAnimation(el, attributes);
       const configObject = {
@@ -75,7 +80,10 @@ export class AnimatedTimeline extends LitElement {
     inView(
       this,
       () => {
-        timeline(sequence);
+        const configObject = {} as AnimationListOptions;
+        if (this.duration) configObject.duration = this.duration;
+        if (this.delay) configObject.delay = this.delay;
+        timeline(sequence, configObject);
       },
       {
         amount: this.amountVisible

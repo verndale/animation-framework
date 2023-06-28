@@ -1,7 +1,14 @@
 import { LitElement, PropertyValueMap, css } from 'lit';
 import { html, unsafeStatic } from 'lit/static-html.js';
 import { customElement, property } from 'lit/decorators.js';
-import { animate, inView, scroll, timeline, TimelineDefinition } from 'motion';
+import {
+  animate,
+  AnimationListOptions,
+  inView,
+  scroll,
+  timeline,
+  TimelineDefinition
+} from 'motion';
 import { camelize } from '../../../src/scripts/helpers/utils';
 import { animProps, animatableProperties } from '../../../src/scripts/helpers/constants';
 
@@ -29,7 +36,7 @@ export class AnimatedElement extends LitElement {
   endOffset = 'end start';
 
   @property({ type: Number, attribute: 'duration' })
-  duration = 1;
+  duration = 1.5;
 
   @property({ type: Number, attribute: 'delay' })
   delay = 0;
@@ -80,7 +87,7 @@ export class AnimatedElement extends LitElement {
   }
 
   private setupInViewAnimation() {
-    if (this.times === undefined)
+    if (this.times === undefined) {
       inView(
         this,
         info => {
@@ -91,33 +98,24 @@ export class AnimatedElement extends LitElement {
         },
         { amount: this.amountVisible }
       );
-    else {
+    } else {
       inView(this, info => {
-        timeline(this.getTimeline());
+        const target = info.target as AnimatedElement;
+        const configObject: AnimationListOptions = {};
+        if (this.duration) configObject.duration = this.duration;
+        if (this.delay) configObject.delay = this.delay;
+
+        timeline(this.getTimeline(), configObject);
       });
     }
   }
 
   private setupScrollAnimation() {
-    scroll(
-      animate(this, this.getAnimation(), {
-        duration: this.duration,
-        delay: this.delay
-      }),
-      {
-        target: this,
-        offset: [this.startOffset, this.endOffset]
-      }
-    );
+    scroll(animate(this, this.getAnimation()), {
+      target: this,
+      offset: [this.startOffset, this.endOffset]
+    });
   }
-
-  private parseUnitValue = (value: string) => {
-    const isNumberWithoutUnit = /^-?\d+(\.\d+)?$/;
-    if (isNumberWithoutUnit.test(value)) return Number(value);
-    else return value;
-  };
-
-  private hasMultipleKeyframes = (value: string) => value?.includes(',');
 }
 
 declare global {
