@@ -23,6 +23,20 @@ export type ToogleElementProps = {
     duration: number;
     easing: string;
   };
+  mobileAnimatedElement: {
+    as: string;
+    className?: string;
+    stagger?: number | boolean;
+    inOpacity?: string;
+    outOpacity?: string;
+    inTranslateY?: string;
+    outTranslateY?: string;
+    inTranslateX?: string;
+    outTranslateX?: string;
+    content: string;
+    duration: number;
+    easing: string;
+  };
 };
 
 const meta: Meta<ToogleElementProps> = {
@@ -68,6 +82,15 @@ export const SideNavigation: Story = {
       content:
         '<div><p>Choose your smart mailbox</p><ul><li>Menu item 1</li><li>Menu item 2</li><li>Menu item 3</li></ul></div>',
       className: 'sidenav__side-menu',
+      duration: 0.8,
+      easing: '0.77, 0, 0.175, 1'
+    },
+    mobileAnimatedElement: {
+      as: 'div',
+      inTranslateX: '100vw,0',
+      outTranslateX: '0,100vw',
+      content: '',
+      className: 'sidenav__mobile-menu',
       duration: 0.8,
       easing: '0.77, 0, 0.175, 1'
     }

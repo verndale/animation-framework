@@ -1,5 +1,6 @@
-<nav class="sidenav">
-    <div class="sidenav__logo">LOGO</div>
+<nav class="sidenav" data-module="sidenav">
+    <div class="sidenav__logo">VERNDALE</div>
+
     <ul class="sidenav__items">
         {{#each items}}
         <li class="sidenav__item">
@@ -12,17 +13,49 @@
         </li>
         {{/each}}
     </ul>
-    <toggle-element trigger-type="click" trigger-controls="sidenav__side-menu">
-      {{>button className="primary" label="Cta"}}
+
+    <toggle-element trigger-type="click" trigger-controls="sidenav__side-menu" class="sidenav__side-trigger">
+      {{>button className="primary" label="Order now"}}
     </toggle-element>
     {{#with animatedElement}}
-    <toggle-element id="sidenav__side-menu" triggered-by="sidenav__close" hide {{#if className}}class="{{className}}"{{/if}} as="{{as}}" {{#if inOpacity}}in-opacity="{{inOpacity}}"{{/if}} {{#if outOpacity}}out-opacity="{{outOpacity}}"{{/if}} {{#if inTranslateY}}in-translate-y="{{inTranslateY}}"{{/if}} {{#if outTranslateY}}out-translate-y="{{outTranslateY}}"{{/if}} {{#if inTranslateX}}in-translate-x="{{inTranslateX}}"{{/if}} {{#if outTranslateX}}out-translate-x="{{outTranslateX}}"{{/if}}{{#if duration}} duration="{{duration}}"{{/if}}{{#if easing}} easing="{{easing}}"{{/if}}>
+    <toggle-element id="sidenav__side-menu" hide {{#if className}}class="{{className}}"{{/if}} as="{{as}}" {{#if inOpacity}}in-opacity="{{inOpacity}}"{{/if}} {{#if outOpacity}}out-opacity="{{outOpacity}}"{{/if}} {{#if inTranslateY}}in-translate-y="{{inTranslateY}}"{{/if}} {{#if outTranslateY}}out-translate-y="{{outTranslateY}}"{{/if}} {{#if inTranslateX}}in-translate-x="{{inTranslateX}}"{{/if}} {{#if outTranslateX}}out-translate-x="{{outTranslateX}}"{{/if}}{{#if duration}} duration="{{duration}}"{{/if}}{{#if easing}} easing="{{easing}}"{{/if}}>
         <div class="sidenav__menu-inner">
-            {{{content}}}
-            <div id="sidenav__close">
-              {{>svg name="plus" className="sidenav__menu-close"}}
+            <div>
+                <p>Choose your solution</p>
+                <ul>
+                    <animated-timeline  >
+                        <animated-element opacity="1" duration="1.2" class="animated-opacity overflow-hidden rounded">
+                            <li class="secondary-text">Optimization</li>
+                        </animated-element>
+                        <animated-element opacity="1" duration="1.2" at="0.4" class="animated-opacity overflow-hidden rounded">
+                            <li class="secondary-text">Digital Marketing</li>
+                        </animated-element>
+                        <animated-element opacity="1" duration="1.2" at="0.8"  class="animated-opacity overflow-hidden rounded">
+                            <li class="secondary-text">Commerce</li>
+                        </animated-element>
+                    </animated-timeline>
+                </ul>
             </div>
+            <toggle-element trigger-type="click" trigger-controls="sidenav__side-menu" class="sidenav__side-trigger">
+                {{>svg name="plus" className="sidenav__menu-close"}}
+            </toggle-element>
         </div>
     </toggle-element>
     {{/with}} 
+
+
+   <toggle-element trigger-type="click" trigger-controls="sidenav__mobile-menu" class="sidenav__mobile-menu-trigger">
+      {{>button className="primary" label="☰"}}
+    </toggle-element>
+    {{#with mobileAnimatedElement}}
+    <toggle-element id="sidenav__mobile-menu" triggered-by="sidenav__menu-close--mobile" hide {{#if className}}class="{{className}}"{{/if}} as="{{as}}" {{#if inOpacity}}in-opacity="{{inOpacity}}"{{/if}} {{#if outOpacity}}out-opacity="{{outOpacity}}"{{/if}} {{#if inTranslateY}}in-translate-y="{{inTranslateY}}"{{/if}} {{#if outTranslateY}}out-translate-y="{{outTranslateY}}"{{/if}} {{#if inTranslateX}}in-translate-x="{{inTranslateX}}"{{/if}} {{#if outTranslateX}}out-translate-x="{{outTranslateX}}"{{/if}}{{#if duration}} duration="{{duration}}"{{/if}}{{#if easing}} easing="{{easing}}"{{/if}}>
+        <div class="sidenav__menu-inner--mobile">
+            <ul>
+                <li>Smart mailboxes</li>
+                <li>How it works</li>
+                <li>The app</li>
+            </ul>
+        </div>
+    </toggle-element>
+    {{/with}}  
 </nav>
