@@ -44,6 +44,9 @@ export class AnimatedElement extends LitElement {
   @property({ type: String, attribute: 'times' })
   times?: string;
 
+  @property({ type: Number, attribute: 'at' })
+  at?: number;
+
   render() {
     return html`<slot></slot>`;
   }
