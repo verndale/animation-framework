@@ -63,12 +63,14 @@ export class AnimatedTimeline extends LitElement {
     const sequence = [] as TimelineDefinition;
     this.querySelectorAll('animated-element').forEach((el: HTMLElement) => {
       const attributes = el.getAttributeNames();
-      console.log(attributes);
       if (attributes.includes('scrub')) return;
       const animObject = this.getAnimation(el, attributes);
       const configObject = {
-        duration: el.getAttribute('duration') ?? 1,
-        delay: el.getAttribute('delay') ?? 0
+        duration: el.getAttribute('duration')
+          ? parseFloat(el.getAttribute('duration') as string)
+          : 1,
+        delay: el.getAttribute('delay') ? parseFloat(el.getAttribute('delay') as string) : 0,
+        at: el.getAttribute('at') ? parseFloat(el.getAttribute('at') as string) : 0
       } as AnimationListOptions;
       sequence.push([el, animObject, configObject]);
     });

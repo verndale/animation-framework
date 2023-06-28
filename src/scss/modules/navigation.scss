@@ -10,15 +10,9 @@
   position: relative;
 }
 
-.navigation__item {
-  background-color: var(--primary-gold);
-  inline-size: 200px;
-  position: relative;
-}
-
 .navigation__menu-trigger {
   background-color: var(--primary-gold);
-  padding: 20px;
+  padding-block: 25px;
 }
 
 .navigation__menu {

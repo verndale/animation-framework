@@ -103,8 +103,8 @@
 }
 
 .masthead-text {
-  inset-block-end: 10vh;
   color: var(--white);
+  inset-block-end: 10vh;
   position: absolute;
 }
 
@@ -120,11 +120,11 @@
 }
 
 .masthead-background__image-container {
+  inline-size: 39.4666666667vw;
+  inset-block-start: 16.5vh;
   inset-inline-start: 50%;
   position: absolute;
-  inset-block-start: 16.5vh;
   transform-origin: top;
-  inline-size: 39.4666666667vw;
 
   &::before {
     content: "";
@@ -134,9 +134,9 @@
 
   img {
     block-size: 100%;
+    inline-size: 100%;
     inset: 0;
     position: absolute;
-    inline-size: 100%;
   }
 }
 
