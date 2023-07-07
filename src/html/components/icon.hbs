@@ -1,0 +1,29 @@
+
+
+{{#ifCond type "==" "link"}}
+<a href="{{url}}" target="{{target}}" class="icon {{className}} {{#if iconSize}}icon-size--{{iconSize}}{{/if}} {{#if size}}wrapper-size--{{size}}{{/if}} {{#if withBackground}}icon--with-background{{/if}} {{#if style}}{{style}}{{/if}}">
+  {{#if isContentManaged}}
+   <img src="{{imageUrl}}" alt="{{label}}" loading="lazy" />
+  {{else}}
+  {{>svg name=name viewBox=viewBox}}
+  {{/if}}
+</a>
+{{else}}
+{{#ifCond type "==" "button"}}
+<button class="icon {{className}} {{#if iconSize}}icon-size--{{iconSize}}{{/if}} {{#if size}}wrapper-size--{{size}}{{/if}} {{#if withBackground}}icon--with-background{{/if}} {{#if style}}{{style}}{{/if}}">
+  {{#if isContentManaged}}
+   <img src="{{imageUrl}}" alt="{{label}}" loading="lazy" />
+  {{else}}
+  {{>svg name=name viewBox=viewBox}}
+  {{/if}}
+</button>
+{{else}}
+<div class="icon {{className}} {{#if iconSize}}icon-size--{{iconSize}}{{/if}} {{#if size}}wrapper-size--{{size}}{{/if}} {{#if withBackground}}icon--with-background{{/if}} {{#if style}}{{style}}{{/if}}">
+  {{#if isContentManaged}}
+   <img src="{{imageUrl}}" alt="{{name}}" loading="lazy" />
+  {{else}}
+  {{>svg name=name viewBox=viewBox}}
+  {{/if}}
+</div>
+{{/ifCond}}
+{{/ifCond}}

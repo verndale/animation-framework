@@ -7,7 +7,8 @@ export type animProps =
   | 'skewX'
   | 'skewY'
   | 'transformOrigin'
-  | 'blockSize';
+  | 'blockSize'
+  | 'maxBlockSize';
 
 const animatableProperties: animProps[] = [
   'opacity',
@@ -19,6 +20,7 @@ const animatableProperties: animProps[] = [
   'skewY',
   'transformOrigin',
   'blockSize',
+  'maxBlockSize'
 ];
 
 export { animatableProperties };

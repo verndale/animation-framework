@@ -1,0 +1,49 @@
+{{!-- <div class="accordion">
+  <div class="accordion__items">
+    {{#each items}}
+      <div class="accordion__item">
+        <button class="accordion__item-trigger" aria-expanded="{{#if @first}}true{{else}}false{{/if}}" id="trigger-{{id}}" aria-controls="panel-{{id}}">
+          <h3 class="accordion__item-title">{{title}}</h3>
+          <div class="accordion__item-icon">
+          {{>icon name="plus" className="accordion__item-icon-plus" iconSize="24"}}
+          {{>icon name="minus" className="accordion__item-icon-minus" iconSize="24"}}
+          </div>
+        </button>
+        <div id="panel-{{id}}" role="region" aria-labelledby="trigger-{{id}}" class="accordion__item-panel">
+          <div class="accordion__item-content">
+            <p>{{{content}}}</p>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div> --}}
+<div class="accordion">
+  <animated-timeline>
+    <animated-element class="animated-opacity" style="display:block;" opacity="0, 1"  translate-x="-100px, 0"  times="0, 0.01" at="0">
+      <h2>Accordion Title</h2>
+    </animated-element>
+    <animated-element class="animated-opacity" style="display:block;" opacity="0,1"  translate-y="100px, 0"  times="0, 0.01" at="1">
+    <div class="accordion__items" trigger-group>
+      {{#each items}}
+        <div class="accordion__item">
+          <toggle-element trigger-type="click" trigger-controls="panel-{{@index}}">
+            <button class="accordion__item-trigger">
+              <h3 class="accordion__item-title">{{title}}</h3>
+              <div class="accordion__item-icon">
+              {{>icon name="plus" className="accordion__item-icon-plus" iconSize="24"}}
+              {{>icon name="minus" className="accordion__item-icon-minus" iconSize="24"}}
+              </div>
+            </button>
+          </toggle-element>
+          <toggle-element id="panel-{{@index}}" hide class="accordion__item-panel" in-opacity="0,1" out-opacity="1,0" in-max-block-size='0, 1000px' out-max-block-size='1000px, 0' duration="1">
+             <div class="accordion__item-content">
+              <p>{{{content}}}</p>
+            </div>
+          </toggle-element>
+        </div>
+      {{/each}}
+    </div>
+    </animated-element>
+  </animated-timeline>
+</div>

@@ -9,7 +9,9 @@
 @use "animation-helpers.scss";
 
 // Include components
+@use "components/accordion";
 @use "components/button";
+@use "components/icon";
 @use "components/animated-button";
 @use "../../lib/active-state-animations";
 

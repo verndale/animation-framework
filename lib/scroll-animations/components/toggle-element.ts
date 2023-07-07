@@ -51,6 +51,8 @@ export class ToggleElement extends LitElement {
   protected anim?: AnimationControls;
   @property({ type: Number })
   protected _currentTime?: number;
+  @property({ type: Boolean })
+  protected _triggerGroup = false;
 
   @property({ type: String, attribute: 'class' })
   class?: string;
@@ -60,8 +62,6 @@ export class ToggleElement extends LitElement {
   triggerControls?: string;
   @property({ type: String, attribute: 'triggered-by' })
   triggeredBy?: string;
-  @property({ type: Boolean, attribute: 'trigger-group' })
-  triggerGroup?: boolean;
 
   handleTrigger() {
     const triggeredElement = document.querySelector(`#${this.triggerControls}`);
@@ -74,12 +74,20 @@ export class ToggleElement extends LitElement {
     const triggerControls = this.triggerControls?.split('-');
     triggerControls?.pop();
     const triggerControlsWithoutPrefix = triggerControls?.join('-');
-    const triggerGroup = document.querySelectorAll(`[id^="${triggerControlsWithoutPrefix}"]`);
-    triggerGroup.forEach(element => {
-      if (triggeredElement !== element) {
-        element.removeAttribute('show');
-      }
-    });
+    console.log(triggerControlsWithoutPrefix);
+    // const triggerGroup = document.querySelectorAll(`[id^="${triggerControlsWithoutPrefix}"]`);
+    this._triggerGroup = !!this.closest('[trigger-group]');
+    if (this._triggerGroup) {
+      const groupEl = this.closest('[trigger-group]') as HTMLElement;
+      const triggerGroup = groupEl.querySelectorAll(`[id^="${triggerControlsWithoutPrefix}"]`);
+      triggerGroup.forEach(element => {
+        if (triggeredElement !== element) {
+          console.log(element);
+          element.removeAttribute('show');
+        }
+      });
+    }
+   
   }
 
   handleShow = () => (this.show = !this.show);

@@ -1,6 +1,5 @@
 <nav class="sidenav" data-module="sidenav">
     <div class="sidenav__logo">VERNDALE</div>
-
     <ul class="sidenav__items">
         {{#each items}}
         <li class="sidenav__item">
@@ -50,7 +49,7 @@
       {{>button className="primary" label="☰"}}
     </toggle-element>
     {{#with mobileAnimatedElement}}
-    <toggle-element id="sidenav__mobile-menu" triggered-by="sidenav__menu-close--mobile" hide {{#if className}}class="{{className}}"{{/if}} {{#if inOpacity}}in-opacity="{{inOpacity}}"{{/if}} {{#if outOpacity}}out-opacity="{{outOpacity}}"{{/if}} {{#if inTranslateY}}in-translate-y="{{inTranslateY}}"{{/if}} {{#if outTranslateY}}out-translate-y="{{outTranslateY}}"{{/if}} {{#if inTranslateX}}in-translate-x="{{inTranslateX}}"{{/if}} {{#if outTranslateX}}out-translate-x="{{outTranslateX}}"{{/if}}{{#if duration}} duration="{{duration}}"{{/if}}{{#if easing}} easing="{{easing}}"{{/if}}>
+    <toggle-element id="sidenav__mobile-menu" hide {{#if className}}class="{{className}}"{{/if}} {{#if inOpacity}}in-opacity="{{inOpacity}}"{{/if}} {{#if outOpacity}}out-opacity="{{outOpacity}}"{{/if}} {{#if inTranslateY}}in-translate-y="{{inTranslateY}}"{{/if}} {{#if outTranslateY}}out-translate-y="{{outTranslateY}}"{{/if}} {{#if inTranslateX}}in-translate-x="{{inTranslateX}}"{{/if}} {{#if outTranslateX}}out-translate-x="{{outTranslateX}}"{{/if}}{{#if duration}} duration="{{duration}}"{{/if}}{{#if easing}} easing="{{easing}}"{{/if}}>
         <div class="sidenav__menu-inner--mobile">
             <ul>
                 <li>Smart mailboxes</li>
