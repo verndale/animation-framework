@@ -16,6 +16,7 @@
 @use "../../lib/active-state-animations";
 
 // Include modules
+@use "modules/accordion-module";
 @use "modules/header";
 @use "modules/sidenav";
 @use "modules/masthead";

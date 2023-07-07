@@ -1,8 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/html';
 import template from '../../../html/templates/inview.hbs';
 import { SideNavigation, ToogleElementProps } from '../scroll-animations/sideNav.stories';
+import { Default as Accordion, AccordionProps } from '../../components/accordion.stories';
 
 export type InviewProps = {
+  accordion: AccordionProps;
   sideNav: ToogleElementProps;
   items: {
     container?: {
@@ -23,6 +25,7 @@ const meta: Meta<InviewProps> = {
   title: 'Examples/Scroll Animations/Demo',
   render: template,
   argTypes: {
+    accordion: { control: 'object' },
     sideNav: { control: 'object' },
     items: { control: 'object' }
   }
@@ -33,6 +36,7 @@ type Story = StoryObj<InviewProps>;
 
 export const InView: Story = {
   args: {
+    accordion: Accordion.args as AccordionProps,
     sideNav: SideNavigation.args as ToogleElementProps,
     items: [
       {
