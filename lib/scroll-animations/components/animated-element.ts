@@ -16,7 +16,6 @@ import { animProps, animatableProperties } from '../../../src/scripts/helpers/co
 export class AnimatedElement extends LitElement {
   static styles = css`
     :host {
-      inline-size: fit-content;
     }
   `;
 

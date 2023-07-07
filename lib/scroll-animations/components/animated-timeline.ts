@@ -13,12 +13,9 @@ import {
 export class AnimatedTimeline extends LitElement {
   static styles = css`
     :host {
-      inline-size: fit-content;
     }
   `;
 
-  @property({ type: String })
-  as = 'div';
 
   @property({ type: Number, attribute: 'amount-visible' })
   amountVisible = 0;
@@ -28,6 +25,7 @@ export class AnimatedTimeline extends LitElement {
 
   @property({ type: Number, attribute: 'duration' })
   duration?: number;
+  
 
   render() {
     return html`<slot></slot>`;

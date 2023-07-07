@@ -2,12 +2,13 @@
   <div class="cards-grid__container container">
     <div class="row">
       <animated-timeline class="col-md-4 cards-grid__card" amount-visible="0.75">
-        <animated-element opacity="1" class="animated-opacity cards-grid__image-wrapper">
+        <animated-element opacity="0, 1" translate-y="20px, 0" class="animated-opacity cards-grid__image-wrapper">
           <animated-element
             class="cards-grid__image"
             scrub
             translate-y="-50px, 50px"
             start-offset="start end"
+            at="0"
           >
             <img
               class="animated-parallax-picture"
@@ -20,8 +21,9 @@
         </animated-element>
         <animated-element
           opacity="1"
-          translate-y="50px, 0"
+          translate-y="20px, 0"
           class="animated-opacity cards-grid__description-wrapper"
+          at="1"
         >
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, hic nostrum. Odio
@@ -29,15 +31,18 @@
             repellendus sequi alias laborum debitis quas modi.
           </p>
         </animated-element>
-        {{>animated-button animationClass="sweep-anim" customClass="cards-grid__cta" label="Read more"}}
+        <animated-element opacity="0,1" translate-y="20px, 0" at="2">
+         {{>animated-button animationClass="sweep-anim" customClass="cards-grid__cta" label="Read more"}}
+        </animated-element>
       </animated-timeline>
-      <animated-timeline class="col-md-4 cards-grid__card" amount-visible="0.75" delay="0.5">
-        <animated-element opacity="1" class="animated-opacity cards-grid__image-wrapper">
+      <animated-timeline class="col-md-4 cards-grid__card" amount-visible="0.75">
+        <animated-element opacity="0, 1" translate-y="20px, 0" class="animated-opacity cards-grid__image-wrapper">
           <animated-element
             class="cards-grid__image"
             scrub
             translate-y="-50px, 50px"
             start-offset="start end"
+            at="0"
           >
             <img
               class="animated-parallax-picture"
@@ -50,8 +55,9 @@
         </animated-element>
         <animated-element
           opacity="1"
-          translate-y="50px, 0"
+          translate-y="20px, 0"
           class="animated-opacity cards-grid__description-wrapper"
+          at="1"
         >
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, hic nostrum. Odio
@@ -59,15 +65,18 @@
             repellendus sequi alias laborum debitis quas modi.
           </p>
         </animated-element>
-        {{>animated-button animationClass="sweep-anim" customClass="cards-grid__cta" label="Read more"}}
+        <animated-element opacity="0,1" translate-y="20px, 0" at="2">
+         {{>animated-button animationClass="sweep-anim" customClass="cards-grid__cta" label="Read more"}}
+        </animated-element>
       </animated-timeline>
-      <animated-timeline class="col-md-4 cards-grid__card" amount-visible="0.75" delay="0.75">
-        <animated-element opacity="1" class="animated-opacity cards-grid__image-wrapper">
+      <animated-timeline class="col-md-4 cards-grid__card" amount-visible="0.75">
+        <animated-element opacity="0, 1" translate-y="20px, 0" class="animated-opacity cards-grid__image-wrapper">
           <animated-element
             class="cards-grid__image"
             scrub
             translate-y="-50px, 50px"
             start-offset="start end"
+            at="0"
           >
             <img
               class="animated-parallax-picture"
@@ -78,13 +87,21 @@
             />
           </animated-element>
         </animated-element>
-        <animated-element opacity="1" translate-y="50px, 0" class="animated-opacity cards-grid__description-wrapper">
+        <animated-element
+          opacity="1"
+          translate-y="20px, 0"
+          class="animated-opacity cards-grid__description-wrapper"
+          at="1"
+        >
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, hic nostrum. Odio
-            inventore velit sit minima totam quidem eius consectetur deleniti, aperiam architecto.
+            inventore velit sit minima totam quidem eius consectetur deleniti, aperiam architecto
+            repellendus sequi alias laborum debitis quas modi.
           </p>
         </animated-element>
-       {{>animated-button animationClass="sweep-anim" customClass="cards-grid__cta" label="Read more"}}
+        <animated-element opacity="0,1" translate-y="20px, 0" at="2">
+         {{>animated-button animationClass="sweep-anim" customClass="cards-grid__cta" label="Read more"}}
+        </animated-element>
       </animated-timeline>
     </div>
   </div>
