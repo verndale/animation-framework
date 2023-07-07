@@ -1,15 +1,25 @@
-@use "../core/breakpoints";
+@use "core/breakpoints";
 
-.overflow-hidden {
-  overflow: hidden;
+.animated-square {
+  background-color: var(--primary-gold);
+  block-size: 10vh;
+  display: block;
+  inline-size: 10vh;
+  margin-block-end: 40px;
+  position: relative;
+
+  &--no-display-block {
+    display: initial;
+  }
+}
+
+.animated-parallax-picture {
+  transform: scale(1.5);
+  transform-origin: center;
 }
 
 .fit-content {
   inline-size: fit-content;
-}
-
-.parallax-picture {
-  transform: scale(1.5);
 }
 
 .inview-section {
@@ -102,66 +112,12 @@
   }
 }
 
-.masthead-text {
-  color: var(--white);
-  inset-block-end: 10vh;
-  position: absolute;
-}
-
 .section-text {
   color: var(--verndale-black);
 }
 
-.masthead {
-  background-color: var(--primary-purple);
-  block-size: 100vh;
-  overflow: hidden;
-  position: relative;
-}
-
-.masthead-background__image-container {
-  inline-size: 39.4666666667vw;
-  inset-block-start: 16.5vh;
-  inset-inline-start: 50%;
-  position: absolute;
-  transform-origin: top;
-
-  &::before {
-    content: "";
-    display: block;
-    padding-block-start: 208.4459459459%;
-  }
-
-  img {
-    block-size: 100%;
-    inline-size: 100%;
-    inset: 0;
-    position: absolute;
-  }
-}
-
-.masthead-background__image {
-  inline-size: 100%;
-  inset: 0;
-  position: absolute;
-}
-
 .animated-opacity {
   opacity: 0;
-}
-
-.content-section {
-  background-color: var(--white);
-  padding-block: 100px;
-  position: relative;
-  z-index: 1;
-}
-
-.inview-example__animated-square {
-  background-color: var(--primary-gold);
-  block-size: 10vh;
-  inline-size: 10vh;
-  margin-block-start: 100px;
 }
 
 .flex-center {
@@ -174,21 +130,8 @@
   gap: 50px;
 }
 
-.block {
-  display: block;
-  transform-origin: center center;
-}
-
 .inline-block {
   display: inline-block;
-}
-
-.secondary-text {
-  font-size: 30px;
-}
-
-.rounded {
-  border-radius: 10px;
 }
 
 .my-50 {
@@ -196,10 +139,15 @@
 }
 
 .sticky {
-  position: sticky;
+  block-size: fit-content;
   inset-block-start: 0;
+  position: sticky;
 }
 
 .flex-col {
   flex-direction: column;
+}
+
+.mobile-mockup {
+  background-color: var(--verndale-black);
 }

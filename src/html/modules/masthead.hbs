@@ -1,0 +1,38 @@
+<div class="masthead bg-red-500">
+  <animated-element
+    opacity="0,1"
+    translate-y="-100px, 0"
+    class="masthead-background__image-container animated-opacity"
+    duration="3"
+    delay="0.5"
+  >
+    <animated-element
+      scrub
+      translate-y="150%"
+      class="masthead-background__image"
+      start-offset="start center"
+    >
+      <img
+        src="images/comp_1-removebg.png"
+        width="592"
+        height="1234"
+        srcset="images/comp_1-removebg.png"
+        loading="lazy"
+        alt=""
+      />
+    </animated-element>
+  </animated-element>
+  <div class="container">
+    <animated-element scrub translate-y="400px" class="masthead-text">
+      <animated-element
+        opacity="0, 1"
+        translate-y="50px, 0"
+        class="animated-opacity"
+        transform-origin="center bottom"
+        duration="1.5"
+      >
+        <h1>VERNDALE</h1>
+      </animated-element>
+    </animated-element>
+  </div>
+</div>

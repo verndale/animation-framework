@@ -1,0 +1,21 @@
+.cta-module {
+  margin-block: var(--module-spacing);
+}
+
+.cta-module__animated-square {
+  background-color: var(--primary-gold);
+  block-size: 10vh;
+  display: block;
+  inline-size: 10vh;
+  margin-block-end: 40px;
+  position: relative;
+  z-index: -1;
+}
+
+.cta-module__animated-paragraph {
+  margin-block-end: 20px;
+}
+
+.cta-module__animated-button {
+  margin-block-start: 40px;
+}

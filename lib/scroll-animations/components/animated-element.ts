@@ -1,5 +1,5 @@
 import { LitElement, PropertyValueMap, css } from 'lit';
-import { html, unsafeStatic } from 'lit/static-html.js';
+import { html } from 'lit/static-html.js';
 import { customElement, property } from 'lit/decorators.js';
 import {
   animate,
@@ -103,7 +103,6 @@ export class AnimatedElement extends LitElement {
       );
     } else {
       inView(this, info => {
-        const target = info.target as AnimatedElement;
         const configObject: AnimationListOptions = {};
         if (this.duration) configObject.duration = this.duration;
         if (this.delay) configObject.delay = this.delay;

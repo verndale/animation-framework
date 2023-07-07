@@ -6,12 +6,20 @@
 @use "core/global";
 @use "core/grid";
 
-@use "examples/animation.scss";
+@use "animation-helpers.scss";
 
 // Include components
 @use "components/button";
 @use "components/animated-button";
 @use "../../lib/active-state-animations";
+
+// Include modules
+@use "modules/header";
 @use "modules/sidenav";
+@use "modules/masthead";
+@use "modules/cta-module";
+@use "modules/cards-grid";
+@use "modules/sticky-module";
+@use "modules/footer";
 
 // Include above the fold modules

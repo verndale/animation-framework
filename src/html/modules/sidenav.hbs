@@ -7,18 +7,20 @@
             <toggle-element trigger-type="click" trigger-controls="inline-menu-{{@index}}" trigger-group>
                 <div class="sidenav__menu-trigger">{{title}}</div>
             </toggle-element>
-            <toggle-element hide id="inline-menu-{{@index}}" {{#if className}}class="{{className}}"{{/if}} as="{{as}}" {{#if inOpacity}}in-opacity="{{inOpacity}}"{{/if}} {{#if outOpacity}}out-opacity="{{outOpacity}}"{{/if}} {{#if inTranslateY}}in-translate-y="{{inTranslateY}}"{{/if}} {{#if outTranslateY}}out-translate-y="{{outTranslateY}}"{{/if}}>
-                 {{{content}}}
-            </toggle-element>
+            <div class="sidenav__megamenu-container">
+                <toggle-element hide id="inline-menu-{{@index}}" {{#if className}}class="{{className}}"{{/if}} {{#if inOpacity}}in-opacity="{{inOpacity}}"{{/if}} {{#if outOpacity}}out-opacity="{{outOpacity}}"{{/if}} {{#if inTranslateY}}in-translate-y="{{inTranslateY}}"{{/if}} {{#if outTranslateY}}out-translate-y="{{outTranslateY}}"{{/if}}>
+                     {{{content}}}
+                </toggle-element>
+            </div>
         </li>
         {{/each}}
     </ul>
 
     <toggle-element trigger-type="click" trigger-controls="sidenav__side-menu" class="sidenav__side-trigger">
-      {{>button className="primary" label="Order now"}}
+      {{>animated-button animationClass="sweep-anim" customClass="sidenav__cta" label="Order now"}}
     </toggle-element>
     {{#with animatedElement}}
-    <toggle-element id="sidenav__side-menu" hide {{#if className}}class="{{className}}"{{/if}} as="{{as}}" {{#if inOpacity}}in-opacity="{{inOpacity}}"{{/if}} {{#if outOpacity}}out-opacity="{{outOpacity}}"{{/if}} {{#if inTranslateY}}in-translate-y="{{inTranslateY}}"{{/if}} {{#if outTranslateY}}out-translate-y="{{outTranslateY}}"{{/if}} {{#if inTranslateX}}in-translate-x="{{inTranslateX}}"{{/if}} {{#if outTranslateX}}out-translate-x="{{outTranslateX}}"{{/if}}{{#if duration}} duration="{{duration}}"{{/if}}{{#if easing}} easing="{{easing}}"{{/if}}>
+    <toggle-element id="sidenav__side-menu" hide {{#if className}}class="{{className}}"{{/if}} {{#if inOpacity}}in-opacity="{{inOpacity}}"{{/if}} {{#if outOpacity}}out-opacity="{{outOpacity}}"{{/if}} {{#if inTranslateY}}in-translate-y="{{inTranslateY}}"{{/if}} {{#if outTranslateY}}out-translate-y="{{outTranslateY}}"{{/if}} {{#if inTranslateX}}in-translate-x="{{inTranslateX}}"{{/if}} {{#if outTranslateX}}out-translate-x="{{outTranslateX}}"{{/if}}{{#if duration}} duration="{{duration}}"{{/if}}{{#if easing}} easing="{{easing}}"{{/if}}>
         <div class="sidenav__menu-inner">
             <div>
                 <p>Choose your solution</p>
@@ -48,7 +50,7 @@
       {{>button className="primary" label="☰"}}
     </toggle-element>
     {{#with mobileAnimatedElement}}
-    <toggle-element id="sidenav__mobile-menu" triggered-by="sidenav__menu-close--mobile" hide {{#if className}}class="{{className}}"{{/if}} as="{{as}}" {{#if inOpacity}}in-opacity="{{inOpacity}}"{{/if}} {{#if outOpacity}}out-opacity="{{outOpacity}}"{{/if}} {{#if inTranslateY}}in-translate-y="{{inTranslateY}}"{{/if}} {{#if outTranslateY}}out-translate-y="{{outTranslateY}}"{{/if}} {{#if inTranslateX}}in-translate-x="{{inTranslateX}}"{{/if}} {{#if outTranslateX}}out-translate-x="{{outTranslateX}}"{{/if}}{{#if duration}} duration="{{duration}}"{{/if}}{{#if easing}} easing="{{easing}}"{{/if}}>
+    <toggle-element id="sidenav__mobile-menu" triggered-by="sidenav__menu-close--mobile" hide {{#if className}}class="{{className}}"{{/if}} {{#if inOpacity}}in-opacity="{{inOpacity}}"{{/if}} {{#if outOpacity}}out-opacity="{{outOpacity}}"{{/if}} {{#if inTranslateY}}in-translate-y="{{inTranslateY}}"{{/if}} {{#if outTranslateY}}out-translate-y="{{outTranslateY}}"{{/if}} {{#if inTranslateX}}in-translate-x="{{inTranslateX}}"{{/if}} {{#if outTranslateX}}out-translate-x="{{outTranslateX}}"{{/if}}{{#if duration}} duration="{{duration}}"{{/if}}{{#if easing}} easing="{{easing}}"{{/if}}>
         <div class="sidenav__menu-inner--mobile">
             <ul>
                 <li>Smart mailboxes</li>

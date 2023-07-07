@@ -10,7 +10,6 @@ export type ToogleElementProps = {
     content?: string;
   }[];
   animatedElement: {
-    as: string;
     className?: string;
     stagger?: number | boolean;
     inOpacity?: string;
@@ -24,7 +23,6 @@ export type ToogleElementProps = {
     easing: string;
   };
   mobileAnimatedElement: {
-    as: string;
     className?: string;
     stagger?: number | boolean;
     inOpacity?: string;
@@ -76,7 +74,6 @@ export const SideNavigation: Story = {
       }
     ],
     animatedElement: {
-      as: 'div',
       inTranslateX: '-36vw,0',
       outTranslateX: '0,-36vw',
       content:
@@ -86,7 +83,6 @@ export const SideNavigation: Story = {
       easing: '0.77, 0, 0.175, 1'
     },
     mobileAnimatedElement: {
-      as: 'div',
       inTranslateX: '100vw,0',
       outTranslateX: '0,100vw',
       content: '',

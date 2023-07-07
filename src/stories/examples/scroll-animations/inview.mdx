@@ -9,64 +9,55 @@ import * as InviewStories from './inview.stories';
       font-weight: bold;
       color: #ff0000;
     }
+    hr{
+      margin: 4rem 0;
+      height: 2px !important;
+    }
   `}
 </style>
 
 # `<animated-element>`
-
-<br />
 <br />
 ## Getting started
 `<animated-element>` is a web component that, by default, animates itself when it enters the viewport.
 
 
+## Styling
 
-### Styling
+The web component `<animated-element>` is a custom html tag with no classes associated by default. It can be styled as any other html tag using the `class` or `style` attributes. 
 
-The web component is used as any html tag and can be styled via classes. By default the only style it has is `display: block` to make translate transforms easier.
-
-```html
-<animated-element class="square"></animated-element>
-```
-
-<animated-element class="square" translate-x='-50px, 0' scale='1.5' duration='2'></animated-element>
-
-### `as` attribute - using it as other html tags
-
-`animated-element` behaves as a div HTML element by default. It can be used as any other html tag by using the `as` attribute. <strong>Please note that `animated-element` cannot be used as a self closing tag.</strong>
 
 ```html
-<animated-element as="section"></animated-element>
-<animated-element as="button"></animated-element>
-<animated-element as="h1"></animated-element>
-<animated-element as="a"></animated-element>
+<animated-element class="animated-square" scale='0, 1' duration='2'></animated-element>
 ```
+<animated-element class="animated-square" scale='0, 1' duration='2'></animated-element>
+<hr/>
 
 It can also be used as a container for other elements.
 
 ```html
-<animated-element opacity="0,1" duration="3">
+<animated-element opacity="0,1" duration="3" delay="1">
   <h3>This is an h3 inside an animated-element tag</h3>
 </animated-element>
 ```
-
-<animated-element opacity="0,1" duration="3">
-  <h3>This is an h1 inside an animated-element</h3>
+<animated-element opacity="0,1" duration="3" delay="1">
+  <h3>This is an h3 inside an animated-element</h3>
 </animated-element>
+<hr/>
+Developers are responsible for adding the styles needed to animate the element. Translations, for example, need `display: block;` to work. In this example, the `.animated-square` class adds the styles needed to animate the element. The class needs to be added to the element that is goign to be animated.
 
 ```html
-<animated-element translate-x="100px" duration="3">
-  <div class="square"></div>
+<animated-element  translate-x="0, 100px" duration="3">
+  <div class="animated-square"></div>
+</animated-element> 
+<animated-element class="animated-square" translate-x="0, 100px" duration="3">
+  <div class="animated-square"></div>
 </animated-element>
 ```
-<animated-element translate-x="100px" duration="3">
-  <div class="square"></div>
+<animated-element  translate-x="0, 100px" duration="3">
+  <div class="animated-square"></div>
+</animated-element> 
+<animated-element class="animated-square" translate-x="0, 100px" duration="3">
+  <div class="animated-square"></div>
 </animated-element> 
 
-
-### `as` same element - timeline
-
-```html
-<animated-element class="square" opacity="0, 1" scale="1, 2" translate-x="50px" times="1, 2, 3"></animated-element>
-```
-<animated-element class="square" opacity="0, 1" scale="1, 2" translate-x="50px" times="1, 2, 3"></animated-element>

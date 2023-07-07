@@ -5,95 +5,16 @@
 </head>
 <body>
   <!-- Header -->
-  {{>header}}
+  {{#with sideNav}}
+    {{>header}}
+  {{/with}}
 
   <!-- Main Content -->
   <main>
-      <div  class="masthead">         
-      <animated-element opacity="0,1" translate-y="-100px, 0" class="masthead-background__image-container animated-opacity block" duration="3" delay="0.5">
-        <animated-element scrub translate-y='1600px' class="masthead-background__image block" start-offset="start center">
-            <img src="//cdn.shopify.com/s/files/1/0609/7744/7071/files/custo-hero_592x1234_crop_center.png?v=1669139239" width="592" height="1234" srcset="//cdn.shopify.com/s/files/1/0609/7744/7071/files/custo-hero_592x1234_crop_center@3x.png?v=1669139239 2x" loading="lazy" alt=""/>     
-          </animated-element>
-        </animated-element>
-        <div class="container">
-            <animated-element scrub translate-y="400px" class="masthead-text">
-              <animated-element opacity="0, 1" translate-y="50px, 0" class="animated-opacity block" transform-origin="center bottom" duration="1.5">
-                <h1>VERNDALE</h1>
-            </animated-element>
-          </animated-element>
-        </div>
-      </div>
-      <div class="content-section container">
-          <div class="row">
-          <animated-element opacity="1" class="animated-opacity col-lg-4" amount-visible="1">
-           <h1 class="section-text">Test text</h1>
-          </animated-element>
-          <animated-element opacity="1" class="animated-opacity col-lg-7 offset-lg-1" amount-visible="1">
-            <p class="secondary-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, hic nostrum.</p>
-          </animated-element>
-          </div>
-          
-          <div class="flex-center">
-          <animated-element class="inview-example__animated-square" opacity="0, 1"  translate-x="-100%, 0" scale="1, 2" rotate="45deg" times="0.5, 0.5, 1">
-          </animated-element>
-          </div>
-      </div>
-      <div class="content-section container flex">
-        <animated-timeline class="block" amount-visible="1" >
-          <animated-element opacity="1" class="animated-opacity overflow-hidden block rounded">
-            <animated-element scrub translate-y='-50px, 50px' class="block" start-offset="start end">
-              <img class="parallax-picture" src="https://verndale-image-tools.azurewebsites.net/id/ACt8ycSzpdE?w=540&h=370"  width="545" height="370" alt="">
-            </animated-element>
-          </animated-element>
-          <animated-element opacity="1" translate-y="50px, 0"class="animated-opacity my-50 block">
-            <p class="my-50">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, hic nostrum. Odio inventore velit sit minima totam quidem eius consectetur deleniti, aperiam architecto repellendus sequi alias laborum debitis quas modi.
-            </p>
-          </animated-element>
-        </animated-timeline>
-        <animated-timeline class="block" amount-visible="1" delay="1">
-          <animated-element opacity="1" class="animated-opacity overflow-hidden block rounded">
-            <animated-element scrub translate-y='-50px, 50px' class="block" start-offset="start end">
-              <img class="parallax-picture" src="https://verndale-image-tools.azurewebsites.net/id/N2zk9yXjmLA?w=540&h=370"  width="545" height="370" alt="">
-            </animated-element>
-          </animated-element>
-          <animated-element opacity="1" translate-y="50px, 0" class="animated-opacity my-50 block">
-            <p class="my-50">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, hic nostrum. Odio inventore velit sit minima totam quidem eius consectetur deleniti, aperiam architecto repellendus sequi alias laborum debitis quas modi.
-            </p>
-          </animated-element>
-        </animated-timeline>
-        <animated-timeline class="block" amount-visible="1" delay="2">
-          <animated-element opacity="1" class="animated-opacity overflow-hidden block rounded">
-            <animated-element scrub translate-y='-50px, 50px' class="block" start-offset="start end">
-              <img class="parallax-picture" src="https://verndale-image-tools.azurewebsites.net/id/ACt8ycSzpdE?w=540&h=370"  width="545" height="370" alt="">
-            </animated-element>
-          </animated-element>
-          <animated-element opacity="1" translate-y="50px, 0"class="animated-opacity my-50 block">
-            <p class="my-50">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, hic nostrum. Odio inventore velit sit minima totam quidem eius consectetur deleniti, aperiam architecto repellendus sequi alias laborum debitis quas modi.
-            </p>
-          </animated-element>
-        </animated-timeline>
-      </div>
-      <div class="content-section container flex">
-        <div class="sticky">
-          <animated-element opacity="1" class="animated-opacity">
-            <h1 class="section-text">Sticky Text</h1>
-          </animated-element>
-        </div>
-        <div class="flex flex-col">
-          <animated-element scrub translate-y='-50px, 50px' class="block" start-offset="start end">
-             <img src="//cdn.shopify.com/s/files/1/0609/7744/7071/files/app2.jpg?crop=center&amp;height=775&amp;v=1653398290&amp;width=545" width="545" height="775" loading="lazy" alt="">
-            </animated-element>
-            <animated-element scrub translate-y='-50px, 50px' class="block" start-offset="start end">
-              <img src="//cdn.shopify.com/s/files/1/0609/7744/7071/files/app2.jpg?crop=center&amp;height=775&amp;v=1653398290&amp;width=545" width="545" height="775" loading="lazy" alt="">
-            </animated-element>
-            <animated-element scrub translate-y='-50px, 50px' class="block" start-offset="start end">
-              <img src="//cdn.shopify.com/s/files/1/0609/7744/7071/files/app2.jpg?crop=center&amp;height=775&amp;v=1653398290&amp;width=545" width="545" height="775" loading="lazy" alt="">
-            </animated-element>
-        </div>
-      </div>
+       {{>masthead}}
+       {{>cta-module}}
+       {{>cards-grid}}
+       {{>sticky-module}}
   </main>
 
   <!-- Footer -->

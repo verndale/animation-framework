@@ -4,7 +4,6 @@ import template from '../../../html/modules/navigation.hbs';
 export type ToogleElementProps = {
   items: {
     animatedElement: {
-      as: string;
       title: string;
       className?: string;
       stagger?: number | boolean;
@@ -33,7 +32,6 @@ export const Navigation: Story = {
     items: [
       {
         animatedElement: {
-          as: 'div',
           inOpacity: '0,1',
           outOpacity: '1,0',
           inTranslateY: '-30,0',
@@ -45,7 +43,6 @@ export const Navigation: Story = {
       },
       {
         animatedElement: {
-          as: 'div',
           inOpacity: '0,1',
           outOpacity: '1,0',
           inTranslateY: '-30,0',
@@ -57,7 +54,6 @@ export const Navigation: Story = {
       },
       {
         animatedElement: {
-          as: 'div',
           inOpacity: '0,1',
           outOpacity: '1,0',
           inTranslateY: '-30,0',

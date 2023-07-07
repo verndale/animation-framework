@@ -1,0 +1,32 @@
+<section class="cta-module">
+  <div class="container">
+    <div class="row">
+      <animated-element opacity="1" class="animated-opacity col-lg-5" amount-visible="1">
+        <animated-element
+          class="cta-module__animated-square"
+          opacity="0, 1"
+          translate-x="-200%, 0"
+          scale="0.5, 1"
+          rotate="45deg"
+          times="0.5, 0.5, 1"
+        >
+        </animated-element>
+        <h1>Designing a Better Experience</h1>
+
+      </animated-element>
+      <animated-element
+        opacity="1"
+        class="animated-opacity col-lg-7"
+        amount-visible="1"
+      >
+          <p class="cta-module__animated-paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia,
+          hic nostrum.Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia.</p>
+          <p class="cta-module__animated-paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia,
+          hic nostrum.</p>
+         <animated-element opacity="0, 1" class="animated-opacity" delay="1">
+        {{>animated-button animationClass="sweep-anim" customClass="cta-module__animated-button" label="Explore"}}
+        </animated-element>
+      </animated-element>
+    </div>
+  </div>
+</section>

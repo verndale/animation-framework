@@ -6,7 +6,8 @@ export type animProps =
   | 'rotate'
   | 'skewX'
   | 'skewY'
-  | 'transformOrigin';
+  | 'transformOrigin'
+  | 'blockSize';
 
 const animatableProperties: animProps[] = [
   'opacity',
@@ -16,7 +17,8 @@ const animatableProperties: animProps[] = [
   'rotate',
   'skewX',
   'skewY',
-  'transformOrigin'
+  'transformOrigin',
+  'blockSize',
 ];
 
 export { animatableProperties };

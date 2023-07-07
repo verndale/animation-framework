@@ -2,7 +2,6 @@
 
 .sidenav {
   align-items: center;
-  background-color: var(--verndale-black);
   block-size: 80px;
   color: var(--white);
   display: flex;
@@ -30,7 +29,10 @@
 .sidenav__items {
   display: none;
   inline-size: 100%;
+
   @include breakpoints.mq($from: tablet) {
+    align-items: center;
+    block-size: 100%;
     display: flex;
     justify-content: space-around;
     padding-inline: 36px;
@@ -38,8 +40,10 @@
 }
 
 .sidenav__item {
-  background-color: var(--verndale-black);
+  align-items: center;
+  block-size: 100%;
   color: var(--white);
+  display: flex;
   position: relative;
 }
 
@@ -77,13 +81,10 @@
 }
 
 .sidenav__inline-menu-item {
-  background: var(--verndale-black);
-  inline-size: 300px;
-  inset-block-start: 100%;
-  inset-inline-start: -20px;
+  background: var(--white);
+  border-radius: 0 0 10px 10px;
+  color: var(--verndale-black);
   padding: 20px;
-  position: absolute;
-  z-index: -1;
 
   li {
     padding-block-end: 20px;
@@ -98,7 +99,7 @@
   inline-size: 36vw;
   inset-block-start: 0;
   inset-inline-start: 0;
-  position: absolute;
+  position: fixed;
 }
 
 .sidenav__mobile-menu {
@@ -191,4 +192,18 @@
       background-color: var(--white);
     }
   }
+}
+
+.sidenav__cta {
+  --anim-default-color: var(--primary-gold);
+  --anim-active-color: var(--primary-purple);
+}
+
+.sidenav__megamenu-container {
+  inline-size: 300px;
+  inset-block-start: 100%;
+  inset-inline-start: -20px;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
 }

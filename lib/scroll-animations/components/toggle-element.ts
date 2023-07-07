@@ -16,9 +16,6 @@ export class ToggleElement extends LitElement {
     }
   `;
 
-  @property({ type: String })
-  as = 'div';
-
   @property({ type: String, attribute: 'root-margin' })
   rootMargin?: string;
 

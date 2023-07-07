@@ -1,0 +1,51 @@
+@use "../core/breakpoints";
+
+.sticky-module {
+  background-color: var(--white);
+  padding-block: var(--module-spacing);
+  position: relative;
+  z-index: 1;
+}
+
+.sticky-module__sticky-column {
+  block-size: fit-content;
+  margin-block-end: 40px;
+
+  @include breakpoints.mq(tablet) {
+    position: sticky;
+    inset-block-start: var(--module-spacing);
+  }
+}
+
+.sticky-module__image {
+  display: block;
+}
+
+.sticky-module__image-wrapper {
+  background-color: var(--verndale-black);
+  border-radius: 20px;
+  display: grid;
+  inline-size: 100%;
+  overflow: hidden;
+  place-content: center;
+}
+
+.sticky-module__parallax-picture {
+  transform: scale(1.5);
+}
+
+.sticky-module__mockups-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.sticky-module__animated-square {
+  background-color: var(--primary-purple);
+  block-size: 10vh;
+  display: block;
+  inline-size: 10vh;
+  margin-block-end: 40px;
+  position: relative;
+  z-index: -10;
+}

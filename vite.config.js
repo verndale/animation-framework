@@ -21,42 +21,15 @@ export default defineConfig({
   build: {
     sourcemap: true,
     appType: 'custom',
-      lib: {
-        entry: {
-          'scroll-animations': path.resolve(__dirname, 'lib/scroll-animations/index.ts'),
-          'active-state-animations': path.resolve(__dirname, 'lib/active-state-animations/index.ts')
-         }
-      },
-      rollupOptions: {
-        external: ['lit', 'motion', 'framer-motion'],
+    lib: {
+      entry: {
+        'scroll-animations': path.resolve(__dirname, 'lib/scroll-animations/index.ts'),
+        'active-state-animations': path.resolve(__dirname, 'lib/active-state-animations/index.ts')
       }
-      // rollupOptions: {
-      //   input: {
-      //     main: path.resolve(__dirname, 'main.js'),
-      //     styles: path.resolve(__dirname, SOURCE_PATHS.STYLES, 'styles.scss')
-      //   },
-      //   output: {
-      //     dir: `dist/${PUBLIC_PATH}`,
-      //     entryFileNames: 'scripts/[name].bundle.js',
-      //     chunkFileNames: 'scripts/[name]-[hash].js',
-      //     assetFileNames: ({ name }) => {
-      //       if (/\.(gif|jpe?g|png|svg)$/.test(name ?? '')) {
-      //         return 'images/[name][extname]';
-      //       }
-  
-      //       if (name === 'styles.css') {
-      //         return 'css/[name][extname]';
-      //       }
-  
-      //       if (/\.css$/.test(name ?? '')) {
-      //         return 'css/[name]-[hash][extname]';
-      //       }
-  
-      //       return '[name]-[hash][extname]';
-      //     }
-      //   }
-      // }
-    
+    },
+    rollupOptions: {
+      external: ['lit', 'motion', 'framer-motion']
+    }
   },
   plugins: [
     splitVendorChunkPlugin(),
@@ -102,7 +75,10 @@ export default defineConfig({
     }),
     svgIcons({
       inputFolder: path.resolve(__dirname, SOURCE_PATHS.STATIC, 'svg-sprites'),
-      output: [`dist/${PUBLIC_PATH}images/svgsheet.svg`, `${SOURCE_PATHS.STATIC}/images/svgsheet.svg`],
+      output: [
+        `dist/${PUBLIC_PATH}images/svgsheet.svg`,
+        `${SOURCE_PATHS.STATIC}/images/svgsheet.svg`
+      ],
       spriteName: 'svgsheet',
       svgoOptions: {
         plugins: [
