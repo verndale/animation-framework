@@ -79,7 +79,7 @@
     "sass": "^1.58.3",
     "storybook": "^7.0.21",
     "storybook-addon-grid-overlay": "0.0.7",
-    "stylelint": "15.2.0",
+    "stylelint": "15.10.1",
     "stylelint-config-sass-guidelines": "10.0.0",
     "stylelint-order": "6.0.3",
     "stylelint-prettier": "3.0.0",
