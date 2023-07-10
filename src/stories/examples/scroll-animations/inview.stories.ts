@@ -1,13 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/html';
 import template from '../../../html/templates/inview.hbs';
+import { SideNavigation, ToogleElementProps } from '../scroll-animations/sideNav.stories';
+import { Default as Accordion, AccordionProps } from '../../components/accordion.stories';
 
 export type InviewProps = {
+  accordion: AccordionProps;
+  sideNav: ToogleElementProps;
   items: {
     container?: {
       className?: string;
     };
     animatedElement: {
-      as: string;
       title: string;
       className?: string;
       opacity?: string;
@@ -19,9 +22,11 @@ export type InviewProps = {
 };
 
 const meta: Meta<InviewProps> = {
-  title: 'Examples/Scroll Animations/InView',
+  title: 'Examples/Scroll Animations/Demo',
   render: template,
   argTypes: {
+    accordion: { control: 'object' },
+    sideNav: { control: 'object' },
     items: { control: 'object' }
   }
 };
@@ -31,13 +36,14 @@ type Story = StoryObj<InviewProps>;
 
 export const InView: Story = {
   args: {
+    accordion: Accordion.args as AccordionProps,
+    sideNav: SideNavigation.args as ToogleElementProps,
     items: [
       {
         container: {
           className: 'inview-section gold'
         },
         animatedElement: {
-          as: 'h2',
           title: 'Item 1',
           opacity: '0, 1',
           translateX: '-100, 0'
@@ -48,7 +54,6 @@ export const InView: Story = {
           className: 'inview-section purple'
         },
         animatedElement: {
-          as: 'h2',
           title: 'Item 2',
           opacity: '0, 1',
           translateX: '-100, 0'
@@ -59,12 +64,14 @@ export const InView: Story = {
           className: 'inview-section gold'
         },
         animatedElement: {
-          as: 'h2',
           className: 'fit-content',
           title: 'Item 3',
           scale: '1.5'
         }
       }
     ]
+  },
+  parameters: {
+    layout: 'fullscreen'
   }
 };

@@ -12,9 +12,10 @@ import globModules from './glob-modules';
 
 const modules: Organism[] = [
   {
-    name: 'accordion',
-    loader: () => import('./modules/accordion')
-  }
+    name: 'navigation',
+    styles: () => import('../scss/modules/navigation.scss')
+  },
+
 ];
 
 export default [...globModules, ...modules];

@@ -1,0 +1,89 @@
+@use "sass-rem" as rem;
+
+.icon {
+  block-size: fit-content;
+  color: var(--primary-blackberry);
+  display: grid;
+  inline-size: fit-content;
+  place-content: center;
+
+  .background--blackberry & {
+    color: var(--white);
+  }
+
+  &--with-background {
+    background-color: var(--primary-blackberry);
+    color: var(--white);
+
+    .background--blackberry & {
+      background-color: var(--white);
+      color: var(--primary-blackberry);
+    }
+
+    .background--light & {
+      background-color: var(--primary-blackberry);
+      color: var(--white);
+    }
+  }
+
+  &.outline {
+    background-color: transparent;
+    border: 2px solid var(--primary-blackberry);
+    color: var(--primary-blackberry);
+
+    .background--blackberry & {
+      background-color: transparent;
+      border: 2px solid var(--white);
+      color: var(--white);
+    }
+  }
+
+  svg,
+  img {
+    block-size: 12px;
+    inline-size: 12px;
+  }
+
+  &.icon-size--14 svg {
+    block-size: 14px;
+    inline-size: 14px;
+  }
+
+  &.icon-size--16 svg {
+    block-size: 16px;
+    inline-size: 16px;
+  }
+
+  &.icon-size--24 svg,
+  &.icon-size--24 img {
+    block-size: 24px;
+    inline-size: 24px;
+  }
+
+  &.icon-size--32 svg,
+  &.icon-size--32 img {
+    block-size: 32px;
+    inline-size: 32px;
+  }
+
+  &.icon-size--48 svg,
+  &.icon-size--48 img {
+    block-size: 48px;
+    inline-size: 48px;
+  }
+
+  &.wrapper-size--small {
+    block-size: 32px;
+    inline-size: 32px;
+  }
+
+  &.wrapper-size--medium {
+    block-size: 48px;
+    inline-size: 48px;
+  }
+
+  &.wrapper-size--large {
+    block-size: 64px;
+    inline-size: 64px;
+  }
+}

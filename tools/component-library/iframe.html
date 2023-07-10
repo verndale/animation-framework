@@ -21,7 +21,6 @@
     window.FEATURES = {"warnOnLegacyHierarchySeparator":true,"buildStoriesJson":false,"storyStoreV7":true,"argTypeTargetsV7":true,"legacyDecoratorFileOrder":false};
     window.STORIES = [{"titlePrefix":"","directory":"./src/stories","files":"**/*.mdx","importPathMatcher":"^\\.[\\\\/](?:src\\/stories(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.mdx)$"},{"titlePrefix":"","directory":"./src/stories","files":"**/*.stories.@(ts|mdx)","importPathMatcher":"^\\.[\\\\/](?:src\\/stories(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(ts|mdx))$"}];
     window.DOCS_OPTIONS = {"defaultName":"Docs","autodocs":"tag"};
-    window.SERVER_CHANNEL_URL = undefined;
 
     // We do this so that "module && module.hot" etc. in Storybook source code
     // doesn't fail (it will simply be disabled)
@@ -357,6 +356,13 @@
     console.warn('unable to connect to top frame for connecting dev tools');
   }
 </script>
+<style>
+  .sbdocs-content {
+    max-width: none !important;
+    padding-inline: 2em;
+  }
+</style>
+
 <script>
   window.global = window;
 </script>
@@ -368,7 +374,7 @@
   rel="stylesheet"
 />
 
-  <script type="module" crossorigin src="./assets/iframe-296631b8.js"></script>
+  <script type="module" crossorigin src="./assets/iframe-02af2e08.js"></script>
 </head>
 
 <body>

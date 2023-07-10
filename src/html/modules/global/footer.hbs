@@ -1,4 +1,34 @@
-<footer></footer>
+<animated-element class="footer__wrapper" scrub translate-y="-100%, 0" start-offset="start end" end-offset="end end">
+<footer class="footer">
+ <div class="container">
+    <div class="row footer__row">
+      <animated-element class="col-md-6 col-6 footer__logo-column" opacity="0, 1" delay="0.5">
+        <p>a project by</p>
+        <h2>Verndale</h2> 
+        {{>animated-button animationClass="sweep-anim" customClass="cta-module__animated-button" label="Contat Us"}}
+      </animated-element>
+       <animated-element class="col-md-3 col-6 footer__column" opacity="0, 1" delay="1">
+        <ul class="footer__links">
+          <li><a class="footer__link" href="#">About Us</a></li>
+          <li><a class="footer__link" href="#">Services</a></li>
+          <li><a class="footer__link" href="#">Industries</a></li>
+          <li><a class="footer__link" href="#">Insights</a></li>
+          <li><a class="footer__link" href="#">Careers</a></li>
+          <li><a class="footer__link" href="#">Contact</a></li>
+        </ul>
+      </animated-element>
+       <animated-element class="col-md-3 col-6 footer__column" opacity="0, 1" delay="1.5">
+        <ul class="footer__links">
+          <li><a class="footer__link" href="#">Animation Framework</a></li>
+          <li><a class="footer__link" href="#">Reusable Components</a></li>
+          <li><a class="footer__link" href="#">Blog</a></li>
+          <li><a class="footer__link" href="#">Linkedin</a></li>
+        </ul>
+      </animated-element>
+    </div>
+ </div>
+</footer>
+</animated-element>
 
 <!-- JavaScript -->
 {{>scripts}}

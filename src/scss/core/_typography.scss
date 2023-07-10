@@ -3,6 +3,7 @@
 @use "sass-rem" as rem;
 
 body {
+  color: var(--verndale-black);
   font-family: var(--secondary-font);
   font-size: rem.convert(16px);
   line-height: 1.63;

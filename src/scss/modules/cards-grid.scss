@@ -1,0 +1,41 @@
+@use "../core/breakpoints";
+
+.cards-grid {
+  margin-block: var(--module-spacing);
+}
+
+.cards-grid__container .row {
+  @include breakpoints.mq($until: tablet) {
+    gap: 50px;
+  }
+}
+
+.cards-grid__card {
+  display: flex;
+  flex-direction: column;
+
+  p {
+    margin-block-start: 40px;
+  }
+}
+
+.cards-grid__image {
+  display: block;
+}
+
+.cards-grid__image-wrapper {
+  border-radius: 20px;
+  display: block;
+  inline-size: 100%;
+  overflow: hidden;
+}
+
+.cards-grid__description-wrapper {
+  display: block;
+  flex-grow: 1;
+}
+
+.cards-grid__cta {
+  inline-size: fit-content;
+  margin-block-start: 20px;
+}

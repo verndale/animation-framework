@@ -5,23 +5,19 @@
 </head>
 <body>
   <!-- Header -->
-  {{>header}}
+  {{#with sideNav}}
+    {{>header}}
+  {{/with}}
 
   <!-- Main Content -->
   <main>
-      {{#each items}}
-        {{#with container}}
-        <div {{#if className}}class="{{className}}"{{/if}}>
-        {{/with}}
-        {{#with animatedElement}}
-          <animated-element {{#if className}}class="{{className}}"{{/if}} as="{{as}}"  {{#if opacity}}opacity="{{opacity}}"{{/if}} {{#if translateX}}translate-x="{{translateX}}"{{/if}} {{#if translateY}}translate-y="{{translateY}}"{{/if}} {{#if scale}}scale="{{scale}}"{{/if}}>
-              {{title}}
-          </animated-element>
-          {{/with}}
-        {{#if container}}
-        </div>
-        {{/if}}
-      {{/each}}
+       {{>masthead}}
+       {{>cta-module}}
+       {{>cards-grid}}
+       {{>sticky-module}}
+       {{#with accordion}}
+       {{>accordion-module}}
+       {{/with}}
   </main>
 
   <!-- Footer -->

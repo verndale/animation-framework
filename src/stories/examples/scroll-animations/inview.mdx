@@ -1,0 +1,63 @@
+import { Meta, Story, Canvas } from '@storybook/blocks';
+import * as InviewStories from './inview.stories';
+
+<Meta title="MDX/animated-element" of={InviewStories} />
+
+<style>
+  {`
+    strong{
+      font-weight: bold;
+      color: #ff0000;
+    }
+    hr{
+      margin: 4rem 0;
+      height: 2px !important;
+    }
+  `}
+</style>
+
+# `<animated-element>`
+<br />
+## Getting started
+`<animated-element>` is a web component that, by default, animates itself when it enters the viewport.
+
+
+## Styling
+
+The web component `<animated-element>` is a custom html tag with no classes associated by default. It can be styled as any other html tag using the `class` or `style` attributes. 
+
+
+```html
+<animated-element class="animated-square" scale='0, 1' duration='2'></animated-element>
+```
+<animated-element class="animated-square" scale='0, 1' duration='2'></animated-element>
+<hr/>
+
+It can also be used as a container for other elements.
+
+```html
+<animated-element opacity="0,1" duration="3" delay="1">
+  <h3>This is an h3 inside an animated-element tag</h3>
+</animated-element>
+```
+<animated-element opacity="0,1" duration="3" delay="1">
+  <h3>This is an h3 inside an animated-element</h3>
+</animated-element>
+<hr/>
+Developers are responsible for adding the styles needed to animate the element. Translations, for example, need `display: block;` to work. In this example, the `.animated-square` class adds the styles needed to animate the element. The class needs to be added to the element that is goign to be animated.
+
+```html
+<animated-element  translate-x="0, 100px" duration="3">
+  <div class="animated-square"></div>
+</animated-element> 
+<animated-element class="animated-square" translate-x="0, 100px" duration="3">
+  <div class="animated-square"></div>
+</animated-element>
+```
+<animated-element  translate-x="0, 100px" duration="3">
+  <div class="animated-square"></div>
+</animated-element> 
+<animated-element class="animated-square" translate-x="0, 100px" duration="3">
+  <div class="animated-square"></div>
+</animated-element> 
+

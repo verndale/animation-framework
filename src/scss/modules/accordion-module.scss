@@ -1,0 +1,9 @@
+@use "../core/breakpoints";
+@use "sass-rem" as rem;
+
+.accordion-module {
+  background-color: var(--white);
+  padding-block: var(--module-spacing);
+  position: relative;
+  z-index: 1;
+}

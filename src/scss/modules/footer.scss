@@ -1,0 +1,40 @@
+@use "../core/breakpoints";
+
+.footer__wrapper {
+  display: block;
+  inline-size: 100%;
+  min-block-size: 50vh;
+  position: relative;
+  z-index: 0;
+}
+
+.footer {
+  background-color: var(--primary-purple);
+  block-size: 100%;
+  display: block;
+  inline-size: 100%;
+  padding-block: var(--module-spacing);
+}
+
+.footer__column {
+  margin-block: 20px;
+}
+
+.footer__columns {
+  color: var(--white);
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.footer__link {
+  color: var(--white);
+  text-decoration: none;
+}
+
+.footer__logo-column {
+  color: var(--white);
+}

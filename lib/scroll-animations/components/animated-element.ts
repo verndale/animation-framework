@@ -1,88 +1,89 @@
-import { LitElement, PropertyValueMap, css } from 'lit';
-import { html, unsafeStatic } from 'lit/static-html.js';
+import { LitElement, PropertyValueMap } from 'lit';
+import { BaseElement } from './base-element';
 import { customElement, property } from 'lit/decorators.js';
-import { animate, MotionKeyframesDefinition, inView } from 'motion';
+import {
+  animate,
+  AnimationListOptions,
+  inView,
+  scroll,
+  timeline,
+  TimelineDefinition
+} from 'motion';
+import { camelize } from '../../../src/scripts/helpers/utils';
+import { animProps, animatableProperties } from '../../../src/scripts/helpers/constants';
 
 @customElement('animated-element')
-export class AnimatedElement extends LitElement {
-  static styles = css`
-    :host {
-      display: block;
-    }
-  `;
-
-  @property({ type: String })
-  as = 'div';
-
-  @property({ type: String, attribute: 'root-margin' })
-  rootMargin?: string;
-
-  @property({ type: String, attribute: 'opacity' })
-  opacity?: string;
-  @property({ type: String, attribute: 'translate-x' })
-  translateX?: string;
-  @property({ type: String, attribute: 'translate-y' })
-  translateY?: string;
-  @property({ type: String, attribute: 'scale' })
-  scale?: string;
-
-  @property({ type: Number, attribute: 'amount-visible' })
-  amountVisible?: number;
-
-  @property({ type: Boolean, attribute: 'scrub' })
-  scrub?: boolean;
-
-  @property({ type: String, attribute: 'start-offset' })
-  startOffset?: string = 'start end';
-
-  @property({ type: String, attribute: 'end-offset' })
-  endOffset?: string = 'end start';
-
-  @property({ type: Number, attribute: 'duration' })
-  duration?: number = 1;
-
-  @property({ type: Number, attribute: 'delay' })
-  delay?: number = 0;
-
-  render() {
-    return html`<${unsafeStatic(this.as)}><slot></slot></${unsafeStatic(this.as)}>`;
-  }
+export class AnimatedElement extends BaseElement(LitElement) {
+  @property({ type: String, attribute: 'times' })
+  times?: string;
 
   async updated(changedProperties: PropertyValueMap<unknown> | Map<PropertyKey, unknown>) {
-    console.log('animated-element updated');
     super.updated(changedProperties);
     if (this.parentElement?.tagName === 'ANIMATED-TIMELINE') return;
-    this.setupInViewAnimation();
+    if (this.scrub) this.setupScrollAnimation();
+    else this.setupInViewAnimation();
   }
 
   private getAnimation() {
-    const animObject: MotionKeyframesDefinition = {};
-    if (this.opacity) {
-      if (this.opacity.includes(',')) animObject.opacity = this.opacity.split(',');
-      else animObject.opacity = this.opacity;
-    }
-    if (this.translateX) {
-      if (this.translateX.includes(',')) animObject.x = this.translateX.split(',');
-      else animObject.x = this.translateX;
-    }
-    if (this.translateY) {
-      if (this.translateY.includes(',')) animObject.x = this.translateY.split(',');
-      else animObject.y = this.translateY;
-    }
-    if (this.scale) {
-      if (this.scale.includes(',')) animObject.scale = this.scale.split(',');
-      else animObject.scale = this.scale;
-    }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const animObject: any = {};
+    Array(...this.attributes).forEach(element => {
+      if (animatableProperties.includes(camelize(element.name) as animProps))
+        animObject[camelize(element.name)] = element.value.includes(',')
+          ? element.value.split(',')
+          : element.value;
+    });
 
     return animObject;
   }
 
+  private getTimeline() {
+    const sequence = [] as TimelineDefinition;
+    const delays = this.times?.split(',').map(time => parseFloat(time));
+    Array(...this.attributes).forEach(element => {
+      if (animatableProperties.includes(camelize(element.name) as animProps))
+        sequence.push([
+          this,
+          {
+            [camelize(element.name)]: element.value.includes(',')
+              ? element.value.split(',')
+              : element.value
+          },
+          { at: delays?.shift() }
+        ]);
+    });
+
+    return sequence;
+  }
+
   private setupInViewAnimation() {
-    inView(this, info => {
-      animate(info.target, this.getAnimation(), {
-        duration: this.duration,
-        delay: this.delay
+    if (this.times === undefined) {
+      inView(
+        this,
+        info => {
+          animate(info.target, this.getAnimation(), {
+            duration: this.duration,
+            delay: this.delay
+          });
+        },
+        { amount: this.amountVisible }
+      );
+    } else {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      inView(this, () => {
+        const configObject: AnimationListOptions = {};
+        if (this.duration) configObject.duration = this.duration;
+        if (this.delay) configObject.delay = this.delay;
+
+        timeline(this.getTimeline(), configObject);
       });
+    }
+  }
+
+  private setupScrollAnimation() {
+    scroll(animate(this, this.getAnimation()), {
+      target: this,
+      offset: [this.startOffset, this.endOffset]
     });
   }
 }

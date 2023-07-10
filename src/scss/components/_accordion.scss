@@ -1,0 +1,52 @@
+@use "../core/breakpoints";
+@use "sass-rem" as rem;
+
+.accordion__item {
+  inline-size: 100%;
+}
+
+.accordion__item-trigger {
+  align-items: center;
+  appearance: none;
+  background-color: transparent;
+  block-size: auto;
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+  display: flex;
+  inline-size: 100%;
+  justify-content: space-between;
+  position: relative;
+  text-align: start;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.accordion__item-icon {
+  block-size: 24px;
+  flex-shrink: 0;
+  inline-size: 24px;
+  position: relative;
+
+  .icon {
+    color: inherit;
+  }
+}
+
+.accordion__item-icon-plus,
+.accordion__item-icon-minus {
+  display: block;
+  inset: 0;
+  position: absolute;
+}
+
+.accordion__item-panel {
+  overflow: hidden;
+}
+
+.accordion__item-content {
+  padding-block: 30px;
+}
+
+.accordion__items {
+  margin-block-start: 50px;
+}

@@ -1,0 +1,153 @@
+@use "core/breakpoints";
+
+.animated-square {
+  background-color: var(--primary-gold);
+  block-size: 10vh;
+  display: block;
+  inline-size: 10vh;
+  margin-block-end: 40px;
+  position: relative;
+
+  &--no-display-block {
+    display: initial;
+  }
+}
+
+.animated-parallax-picture {
+  transform: scale(1.5);
+  transform-origin: center;
+}
+
+.fit-content {
+  inline-size: fit-content;
+}
+
+.inview-section {
+  block-size: 100vh;
+  font-weight: 700;
+  overflow: hidden;
+  padding: 50px;
+
+  h2 {
+    inline-size: fit-content;
+    transform-origin: center;
+  }
+
+  &.gold {
+    background-color: var(--primary-gold);
+    color: var(--verndale-black);
+  }
+
+  &.purple {
+    background-color: var(--primary-purple);
+    color: var(--white);
+  }
+}
+
+.demo-content {
+  block-size: 100%;
+  display: flex;
+  flex-direction: column;
+  inline-size: 290px;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+}
+
+.demo-container {
+  align-items: center;
+  border-block-end: 1px solid rgba(0, 0, 0, 0.65);
+  cursor: pointer;
+  display: flex;
+  inline-size: 100%;
+  justify-content: center;
+  min-block-size: 200px;
+  padding-block-start: 35px;
+  position: relative;
+  z-index: 1;
+}
+
+.square,
+.circle {
+  background-color: var(--primary-gold);
+  block-size: 28px;
+  font-size: 14px;
+  inline-size: 28px;
+  margin: 1px;
+  pointer-events: none;
+  position: relative;
+}
+
+.parallax__image {
+  transform-origin: center;
+
+  &--translate {
+    scale: 1.2;
+  }
+}
+
+.parallax-demo__container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+
+  :nth-child(even) {
+    align-self: flex-end;
+  }
+}
+
+.masthead-text *,
+.section-text * {
+  font-size: 40px;
+  line-height: 1;
+  margin-block: 0;
+  padding-block: 0;
+
+  @include breakpoints.mq(tablet) {
+    font-size: 60px;
+  }
+
+  @include breakpoints.mq(tabletLandscape) {
+    font-size: 200px;
+  }
+}
+
+.section-text {
+  color: var(--verndale-black);
+}
+
+.animated-opacity {
+  opacity: 0;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+}
+
+.flex {
+  display: flex;
+  gap: 50px;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.my-50 {
+  margin-block: 50px;
+}
+
+.sticky {
+  block-size: fit-content;
+  inset-block-start: 0;
+  position: sticky;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.mobile-mockup {
+  background-color: var(--verndale-black);
+}

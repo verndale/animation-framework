@@ -4,11 +4,9 @@ import type { Preview } from '@storybook/html';
 import { Title, Subtitle, Description, Stories } from '@storybook/blocks';
 import '../src/scripts';
 import '../src/scss/styles.scss';
-import { SOURCE_PATHS } from '../.toolkit/config';
-import '../lib/scroll-animations';
 
 svgxhr({
-  filename: `${SOURCE_PATHS.STATIC}/images/svgsheet.svg`
+  filename: `/images/svgsheet.svg`
 });
 
 const viewports = {
@@ -85,7 +83,7 @@ const preview: Preview = {
       gap: 'var(--gutter-width)',
       gutter: 'var(--container-padding)',
       maxWidth: 'var(--container-max-width)'
-    }
+    },
   }
 };
 
