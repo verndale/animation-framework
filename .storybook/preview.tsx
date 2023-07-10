@@ -84,7 +84,6 @@ const preview: Preview = {
       gutter: 'var(--container-padding)',
       maxWidth: 'var(--container-max-width)'
     },
-    layout: 'fullscreen'
   }
 };
 

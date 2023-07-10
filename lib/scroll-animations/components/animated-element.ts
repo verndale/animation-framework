@@ -1,5 +1,5 @@
 import { LitElement, PropertyValueMap, css } from 'lit';
-import { html } from 'lit/static-html.js';
+import { BaseElement } from './base-element';
 import { customElement, property } from 'lit/decorators.js';
 import {
   animate,
@@ -13,42 +13,9 @@ import { camelize } from '../../../src/scripts/helpers/utils';
 import { animProps, animatableProperties } from '../../../src/scripts/helpers/constants';
 
 @customElement('animated-element')
-export class AnimatedElement extends LitElement {
-  static styles = css`
-    :host {
-    }
-  `;
-
-  @property({ type: String, attribute: 'root-margin' })
-  rootMargin?: string;
-
-  @property({ type: Number, attribute: 'amount-visible' })
-  amountVisible = 0;
-
-  @property({ type: Boolean, attribute: 'scrub' })
-  scrub?: boolean;
-
-  @property({ type: String, attribute: 'start-offset' })
-  startOffset = 'start end';
-
-  @property({ type: String, attribute: 'end-offset' })
-  endOffset = 'end start';
-
-  @property({ type: Number, attribute: 'duration' })
-  duration = 1.5;
-
-  @property({ type: Number, attribute: 'delay' })
-  delay = 0;
-
+export class AnimatedElement extends BaseElement(LitElement) {
   @property({ type: String, attribute: 'times' })
   times?: string;
-
-  @property({ type: Number, attribute: 'at' })
-  at?: number;
-
-  render() {
-    return html`<slot></slot>`;
-  }
 
   async updated(changedProperties: PropertyValueMap<unknown> | Map<PropertyKey, unknown>) {
     super.updated(changedProperties);
@@ -58,6 +25,7 @@ export class AnimatedElement extends LitElement {
   }
 
   private getAnimation() {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const animObject: any = {};
     Array(...this.attributes).forEach(element => {
       if (animatableProperties.includes(camelize(element.name) as animProps))
@@ -101,7 +69,8 @@ export class AnimatedElement extends LitElement {
         { amount: this.amountVisible }
       );
     } else {
-      inView(this, info => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      inView(this, () => {
         const configObject: AnimationListOptions = {};
         if (this.duration) configObject.duration = this.duration;
         if (this.delay) configObject.delay = this.delay;

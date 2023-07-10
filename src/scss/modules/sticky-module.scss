@@ -12,8 +12,8 @@
   margin-block-end: 40px;
 
   @include breakpoints.mq(tablet) {
-    position: sticky;
     inset-block-start: var(--module-spacing);
+    position: sticky;
   }
 }
 

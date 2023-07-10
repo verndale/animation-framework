@@ -12,18 +12,10 @@ import globModules from './glob-modules';
 
 const modules: Organism[] = [
   {
-    name: 'accordion',
-    loader: () => import('./modules/accordion')
-  },
-  {
     name: 'navigation',
-    loader: () => import('./modules/navigation'),
     styles: () => import('../scss/modules/navigation.scss')
   },
-  {
-    name: 'sidenav',
-    loader: () => import('./modules/sidenav')
-  }
+
 ];
 
 export default [...globModules, ...modules];

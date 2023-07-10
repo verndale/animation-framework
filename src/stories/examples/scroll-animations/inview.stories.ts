@@ -70,5 +70,8 @@ export const InView: Story = {
         }
       }
     ]
+  },
+  parameters: {
+    layout: 'fullscreen'
   }
 };

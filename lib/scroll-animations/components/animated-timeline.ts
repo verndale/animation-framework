@@ -16,7 +16,6 @@ export class AnimatedTimeline extends LitElement {
     }
   `;
 
-
   @property({ type: Number, attribute: 'amount-visible' })
   amountVisible = 0;
 
@@ -25,7 +24,6 @@ export class AnimatedTimeline extends LitElement {
 
   @property({ type: Number, attribute: 'duration' })
   duration?: number;
-  
 
   render() {
     return html`<slot></slot>`;

@@ -87,7 +87,6 @@ export class ToggleElement extends LitElement {
         }
       });
     }
-   
   }
 
   handleShow = () => (this.show = !this.show);
@@ -125,6 +124,7 @@ export class ToggleElement extends LitElement {
   };
 
   private getAnimation(prefix?: 'in' | 'out') {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const animObject: any = {};
 
     Array(...this.attributes).forEach(element => {
