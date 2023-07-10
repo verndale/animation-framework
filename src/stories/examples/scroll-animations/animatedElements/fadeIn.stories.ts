@@ -7,7 +7,7 @@ export type FadeInProps = {
 };
 
 const meta: Meta<FadeInProps> = {
-  title: 'Examples/Scroll Animations/AnimatedElements/FadeIn',
+  title: 'Examples/Scroll Animations/FadeIn',
   render: template,
   argTypes: {
     content: { control: 'text' }

@@ -1,4 +1,4 @@
-import { LitElement, PropertyValueMap, css } from 'lit';
+import { LitElement, PropertyValueMap } from 'lit';
 import { BaseElement } from './base-element';
 import { customElement, property } from 'lit/decorators.js';
 import {
