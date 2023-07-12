@@ -2,8 +2,8 @@ import { LitElement, PropertyValueMap, css } from 'lit';
 import { html } from 'lit/static-html.js';
 import { customElement, property } from 'lit/decorators.js';
 import { animate, inView, AnimationControls, Easing } from 'motion';
-import { animatableProperties, animProps } from '../../../src/scripts/helpers/constants';
-import { camelize } from '../../../src/scripts/helpers/utils';
+import { animatableProperties, animProps } from '../../src/scripts/helpers/constants';
+import { camelize } from '../../src/scripts/helpers/utils';
 
 @customElement('toggle-element')
 export class ToggleElement extends LitElement {

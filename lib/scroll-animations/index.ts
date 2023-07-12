@@ -37,7 +37,7 @@ import { RotateRight } from './components/rotate-right';
 
 import { AnimatedElement } from './components/animated-element';
 import { AnimatedTimeline } from './components/animated-timeline';
-import { ToggleElement } from './components/toggle-element';
+import { ToggleElement } from '../active-state-animations/toggle-element';
 
 export {
   FadeIn,
