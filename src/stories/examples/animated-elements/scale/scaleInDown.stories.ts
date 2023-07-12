@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/html';
-import template from '../../../../html/animated-elements/fade-in.hbs';
+import template from '../../../../html/animated-elements/scale/scale-in-down.hbs';
 
-export type FadeInProps = {
+export type ScaleInDownProps = {
   scrub?: boolean;
   content: string;
 };
 
-const meta: Meta<FadeInProps> = {
-  title: 'Examples/Scroll Animations/FadeIn',
+const meta: Meta<ScaleInDownProps> = {
+  title: 'Examples/Scroll Animations/ScaleInDown',
   render: template,
   argTypes: {
     content: { control: 'text' }
@@ -22,20 +22,20 @@ const meta: Meta<FadeInProps> = {
 };
 
 export default meta;
-type Story = StoryObj<FadeInProps>;
+type Story = StoryObj<ScaleInDownProps>;
 
-export const FadeIn: Story = {
+export const ScaleInDown: Story = {
   args: {
-    content: '<h1>Fade In test</h1>'
+    content: '<h1>Scale In Down test</h1>'
   },
   parameters: {
     layout: 'fullscreen'
   }
 };
 
-export const FadeInScroll: Story = {
+export const ScaleInDownScroll: Story = {
   args: {
-    content: '<h1>scroll fade-in test</h1>',
+    content: '<h1>scroll scale-in-down test</h1>',
     scrub: true
   },
   parameters: {

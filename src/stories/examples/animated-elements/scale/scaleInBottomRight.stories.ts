@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/html';
-import template from '../../../../../html/animated-elements/scale/scale-in-right.hbs';
+import template from '../../../../html/animated-elements/scale/scale-in-bottom-right.hbs';
 
-export type ScaleInRightProps = {
+export type ScaleInBottomRightProps = {
   scrub?: boolean;
   content: string;
 };
 
-const meta: Meta<ScaleInRightProps> = {
-  title: 'Examples/Scroll Animations/ScaleInRight',
+const meta: Meta<ScaleInBottomRightProps> = {
+  title: 'Examples/Scroll Animations/ScaleInBottomRight',
   render: template,
   argTypes: {
     content: { control: 'text' }
@@ -22,20 +22,20 @@ const meta: Meta<ScaleInRightProps> = {
 };
 
 export default meta;
-type Story = StoryObj<ScaleInRightProps>;
+type Story = StoryObj<ScaleInBottomRightProps>;
 
-export const ScaleInRight: Story = {
+export const ScaleInBottomRight: Story = {
   args: {
-    content: '<h1>Scale In Right test</h1>'
+    content: '<h1>Scale In Bottom Right test</h1>'
   },
   parameters: {
     layout: 'fullscreen'
   }
 };
 
-export const ScaleInRightScroll: Story = {
+export const ScaleInBottomRightScroll: Story = {
   args: {
-    content: '<h1>scroll scale-in-right test</h1>',
+    content: '<h1>scroll scale-in-bottom-right test</h1>',
     scrub: true
   },
   parameters: {
