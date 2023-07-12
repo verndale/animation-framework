@@ -1,5 +1,14 @@
 import { FadeIn } from './components/fade-in';
 
+import { SlideInUp } from './components/slide-in-up';
+import { SlideInDown } from './components/slide-in-down';
+import { SlideInLeft } from './components/slide-in-left';
+import { SlideInRight } from './components/slide-in-right';
+import { SlideOutUp } from './components/slide-out-up';
+import { SlideOutDown } from './components/slide-out-down';
+import { SlideOutLeft } from './components/slide-out-left';
+import { SlideOutRight } from './components/slide-out-right';
+
 import { ScaleIn } from './components/scale-in';
 import { ScaleInUp } from './components/scale-in-up';
 import { ScaleInDown } from './components/scale-in-down';
@@ -25,6 +34,14 @@ export {
   ScaleInBottomRight,
   ScaleInTopLeft,
   ScaleInTopRight,
+  SlideInUp,
+  SlideInDown,
+  SlideInLeft,
+  SlideInRight,
+  SlideOutUp,
+  SlideOutDown,
+  SlideOutLeft,
+  SlideOutRight,
   AnimatedElement,
   AnimatedTimeline,
   ToggleElement
