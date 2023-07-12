@@ -3,8 +3,13 @@ import template from '../../html/scroll-animations/animated-element.hbs';
 
 export type AnimatedElelentProps = {
   animation?: string;
-  scrub?: boolean;
   content: string;
+  scrub?: boolean;
+  amountVisible?: number;
+  startOffset?: string;
+  endOffset?: string;
+  duration?: number;
+  delay?: number;
 };
 
 const meta: Meta<AnimatedElelentProps> = {
@@ -49,7 +54,12 @@ const meta: Meta<AnimatedElelentProps> = {
       ]
     },
     content: { name: 'Content', control: 'text' },
-    scrub: { name: 'Scrub', control: 'boolean' }
+    scrub: { name: 'Scrub', control: 'boolean' },
+    amountVisible: { name: 'Amount Visible', control: 'number' },
+    startOffset: { name: 'Start Offset (px)', control: 'number' },
+    endOffset: { name: 'End Offset (px)', control: 'number' },
+    duration: { name: 'Duration (s)', control: 'number' },
+    delay: { name: 'Delay (s)', control: 'number' }
   },
   decorators: [
     (story, context) => {
