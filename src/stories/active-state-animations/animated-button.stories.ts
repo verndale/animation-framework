@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/html';
-import template from '../../../html/components/animated-button.hbs';
+import template from '../../html/components/animated-button.hbs';
 
 export type AnimatedButtonProps = {
   label: string;
@@ -11,7 +11,7 @@ export type AnimatedButtonProps = {
 };
 
 const meta: Meta<AnimatedButtonProps> = {
-  title: 'Examples/Active State Animations/Animated Button',
+  title: 'Active State Animations/Animated Button',
   tags: ['autodocs'],
   render: template,
   argTypes: {
@@ -91,7 +91,7 @@ export const IconForward: Story = {
     animationClass: 'icon-forward-anim',
     customClass: '',
     icon: {
-      name: 'plus',
+      name: 'plus'
     }
   }
 };
@@ -102,7 +102,7 @@ export const IconUp: Story = {
     animationClass: 'icon-up-anim',
     customClass: '',
     icon: {
-      name: 'file-pdf',
+      name: 'file-pdf'
     }
   }
 };

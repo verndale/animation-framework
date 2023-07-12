@@ -1,5 +1,5 @@
 import { css } from 'lit';
-import BaseElement from './base-element';
+import BaseElement from '../core/base-element';
 import { customElement } from 'lit/decorators.js';
 
 @customElement('scale-in-top-right')

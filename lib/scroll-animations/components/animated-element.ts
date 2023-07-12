@@ -1,4 +1,4 @@
-import BaseElement from './base-element';
+import BaseElement from '../core/base-element';
 import { customElement, property } from 'lit/decorators.js';
 import { animate, AnimationListOptions, inView, timeline, TimelineDefinition } from 'motion';
 import { camelize } from '../../../src/scripts/helpers/utils';
