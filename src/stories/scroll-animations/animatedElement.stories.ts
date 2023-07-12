@@ -41,7 +41,9 @@ const meta: Meta<AnimatedElelentProps> = {
         'scale-out-top-left',
         'scale-out-top-right',
         'scale-out-bottom-left',
-        'scale-out-bottom-right'
+        'scale-out-bottom-right',
+        'blur-in',
+        'blur-out'
       ]
     },
     content: { name: 'Content', control: 'text' },

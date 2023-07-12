@@ -17,7 +17,7 @@ export type ToogleElementProps = {
 };
 
 const meta: Meta<ToogleElementProps> = {
-  title: 'Examples/Scroll Animations/Toggle Element',
+  title: 'Examples/Toggle Animations/Navigation',
   render: template,
   argTypes: {
     items: { control: 'object' }

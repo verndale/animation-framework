@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/html';
 import template from '../../../html/templates/inview.hbs';
-import { SideNavigation, ToogleElementProps } from '../scroll-animations/sideNav.stories';
+import { SideNavigation, ToogleElementProps } from '../toggle-animations/sideNav.stories';
 import { Default as Accordion, AccordionProps } from '../../components/accordion.stories';
 
 export type InviewProps = {
