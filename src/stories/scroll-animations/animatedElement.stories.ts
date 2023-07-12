@@ -32,7 +32,16 @@ const meta: Meta<AnimatedElelentProps> = {
         'scale-in-top-left',
         'scale-in-top-right',
         'scale-in-bottom-left',
-        'scale-in-bottom-right'
+        'scale-in-bottom-right',
+        'scale-out',
+        'scale-out-up',
+        'scale-out-down',
+        'scale-out-left',
+        'scale-out-right',
+        'scale-out-top-left',
+        'scale-out-top-right',
+        'scale-out-bottom-left',
+        'scale-out-bottom-right'
       ]
     },
     content: { name: 'Content', control: 'text' },
