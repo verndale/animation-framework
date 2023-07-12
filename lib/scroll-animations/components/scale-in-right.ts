@@ -2,23 +2,24 @@ import { css } from 'lit';
 import BaseElement from './base-element';
 import { customElement } from 'lit/decorators.js';
 
-@customElement('fade-in')
-export class FadeIn extends BaseElement {
+@customElement('scale-in-right')
+export class ScaleInRight extends BaseElement {
   static styles = [
     css`
       :host {
-        opacity: 0;
+        display: inline-block;
+        transform: scale(0) translateX(100%);
       }
     `
   ];
 
   protected getAnimation() {
-    return { opacity: [0, 1] };
+    return { scale: [0, 1], translateX: ['-100%', '0%'] };
   }
 }
 
 declare global {
   interface HTMLElementTagNameMap {
-    'fade-in': FadeIn;
+    'scale-in-right': ScaleInRight;
   }
 }

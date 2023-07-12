@@ -1,8 +1,6 @@
-import { LitElement, css, html } from 'lit';
+import { LitElement, PropertyValueMap, css, html } from 'lit';
 import { property } from 'lit/decorators/property.js';
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type Constructor<T> = new (...args: any[]) => T;
+import { MotionKeyframesDefinition, animate, inView, scroll } from 'motion';
 
 export declare class BaseElementInterface {
   rootMargin?: string;
@@ -14,47 +12,83 @@ export declare class BaseElementInterface {
   delay?: number;
   at?: number;
 }
+abstract class BaseElement extends LitElement {
+  static styles = [
+    LitElement.styles ?? [],
+    css`
+      :host {
+      }
+    `
+  ];
 
-export const BaseElement = <T extends Constructor<LitElement>>(superClass: T) => {
-  class BaseElement extends superClass {
-    static styles = [
-      (superClass as unknown as typeof LitElement).styles ?? [],
-      css`
-        :host {
-        }
-      `
-    ];
+  @property({ type: String, attribute: 'root-margin' })
+  rootMargin?: string;
 
-    @property({ type: String, attribute: 'root-margin' })
-    rootMargin?: string;
+  @property({ type: Number, attribute: 'amount-visible' })
+  amountVisible = 1;
 
-    @property({ type: Number, attribute: 'amount-visible' })
-    amountVisible = 1;
+  @property({ type: Boolean, attribute: 'scrub' })
+  scrub?: boolean;
 
-    @property({ type: Boolean, attribute: 'scrub' })
-    scrub?: boolean;
+  @property({ type: String, attribute: 'start-offset' })
+  startOffset = 'start end';
 
-    @property({ type: String, attribute: 'start-offset' })
-    startOffset = 'start end';
+  @property({ type: String, attribute: 'end-offset' })
+  endOffset = 'start 25%';
 
-    @property({ type: String, attribute: 'end-offset' })
-    endOffset = 'end start';
+  @property({ type: Number, attribute: 'duration' })
+  duration = 1;
 
-    @property({ type: Number, attribute: 'duration' })
-    duration = 1;
+  @property({ type: Number, attribute: 'delay' })
+  delay = 0;
 
-    @property({ type: Number, attribute: 'delay' })
-    delay = 0;
+  @property({ type: String, attribute: 'times' })
+  times?: string;
 
-    @property({ type: String, attribute: 'times' })
-    times?: string;
+  @property({ type: Number, attribute: 'at' })
+  at?: number;
 
-    @property({ type: Number, attribute: 'at' })
-    at?: number;
-
-    render() {
-      return html`<slot></slot>`;
-    }
+  constructor() {
+    super();
+    //in case you need to setup a default value that is different from the ones used in the base-element (.i.e. duration=1, delay=0)
+    this.duration = this.getAttribute('duration')
+      ? parseFloat(this.getAttribute('duration') as string)
+      : 2;
+    this.delay = this.getAttribute('delay') ? parseFloat(this.getAttribute('delay') as string) : 0;
   }
-  return BaseElement as Constructor<BaseElementInterface> & T;
-};
+
+  protected abstract getAnimation(): MotionKeyframesDefinition;
+
+  protected setupInViewAnimation() {
+    inView(
+      this,
+      info => {
+        animate(info.target, this.getAnimation(), {
+          duration: this.duration,
+          delay: this.delay
+        });
+      },
+      { amount: this.amountVisible }
+    );
+  }
+
+  async updated(changedProperties: PropertyValueMap<unknown> | Map<PropertyKey, unknown>) {
+    super.updated(changedProperties);
+    if (this.parentElement?.tagName === 'ANIMATED-TIMELINE') return;
+    if (this.scrub) this.setupScrollAnimation();
+    else this.setupInViewAnimation();
+  }
+
+  private setupScrollAnimation() {
+    scroll(animate(this, this.getAnimation()), {
+      target: this,
+      offset: [this.startOffset, this.endOffset]
+    });
+  }
+
+  render() {
+    return html`<slot></slot>`;
+  }
+}
+
+export default BaseElement;

@@ -1,30 +1,15 @@
-import { LitElement, PropertyValueMap } from 'lit';
-import { BaseElement } from './base-element';
+import BaseElement from './base-element';
 import { customElement, property } from 'lit/decorators.js';
-import {
-  animate,
-  AnimationListOptions,
-  inView,
-  scroll,
-  timeline,
-  TimelineDefinition
-} from 'motion';
+import { animate, AnimationListOptions, inView, timeline, TimelineDefinition } from 'motion';
 import { camelize } from '../../../src/scripts/helpers/utils';
 import { animProps, animatableProperties } from '../../../src/scripts/helpers/constants';
 
 @customElement('animated-element')
-export class AnimatedElement extends BaseElement(LitElement) {
+export class AnimatedElement extends BaseElement {
   @property({ type: String, attribute: 'times' })
   times?: string;
 
-  async updated(changedProperties: PropertyValueMap<unknown> | Map<PropertyKey, unknown>) {
-    super.updated(changedProperties);
-    if (this.parentElement?.tagName === 'ANIMATED-TIMELINE') return;
-    if (this.scrub) this.setupScrollAnimation();
-    else this.setupInViewAnimation();
-  }
-
-  private getAnimation() {
+  protected getAnimation() {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const animObject: any = {};
     Array(...this.attributes).forEach(element => {
@@ -56,7 +41,7 @@ export class AnimatedElement extends BaseElement(LitElement) {
     return sequence;
   }
 
-  private setupInViewAnimation() {
+  protected setupInViewAnimation() {
     if (this.times === undefined) {
       inView(
         this,
@@ -78,13 +63,6 @@ export class AnimatedElement extends BaseElement(LitElement) {
         timeline(this.getTimeline(), configObject);
       });
     }
-  }
-
-  private setupScrollAnimation() {
-    scroll(animate(this, this.getAnimation()), {
-      target: this,
-      offset: [this.startOffset, this.endOffset]
-    });
   }
 }
 
