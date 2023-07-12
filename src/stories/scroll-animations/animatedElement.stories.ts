@@ -43,7 +43,9 @@ const meta: Meta<AnimatedElelentProps> = {
         'scale-out-bottom-left',
         'scale-out-bottom-right',
         'blur-in',
-        'blur-out'
+        'blur-out',
+        'rotate-left',
+        'rotate-right'
       ]
     },
     content: { name: 'Content', control: 'text' },
@@ -71,7 +73,7 @@ type Story = StoryObj<AnimatedElelentProps>;
 export const AnimatedElelent: Story = {
   args: {
     animation: 'fade-in',
-    content: '<h1>Animated Element</h1>',
+    content: '<img src="/images/logo-verndale.png" alt="Verndale Logo" />',
     scrub: false
   }
 };

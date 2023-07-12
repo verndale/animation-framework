@@ -31,7 +31,7 @@ abstract class BaseElement extends LitElement {
   scrub?: boolean;
 
   @property({ type: String, attribute: 'start-offset' })
-  startOffset = 'end end';
+  startOffset = 'start end';
 
   @property({ type: String, attribute: 'end-offset' })
   endOffset = 'start 25%';

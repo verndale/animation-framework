@@ -32,6 +32,9 @@ import { SlideOutRight } from './components/slide-out-right';
 import { BlurIn } from './components/blur-in';
 import { BlurOut } from './components/blur-out';
 
+import { RotateLeft } from './components/rotate-left';
+import { RotateRight } from './components/rotate-right';
+
 import { AnimatedElement } from './components/animated-element';
 import { AnimatedTimeline } from './components/animated-timeline';
 import { ToggleElement } from './components/toggle-element';
@@ -66,6 +69,8 @@ export {
   SlideOutRight,
   BlurIn,
   BlurOut,
+  RotateLeft,
+  RotateRight,
   AnimatedElement,
   AnimatedTimeline,
   ToggleElement
