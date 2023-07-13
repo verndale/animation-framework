@@ -83,7 +83,7 @@ const preview: Preview = {
       gap: 'var(--gutter-width)',
       gutter: 'var(--container-padding)',
       maxWidth: 'var(--container-max-width)'
-    },
+    }
   }
 };
 

@@ -2,24 +2,25 @@ import { css } from 'lit';
 import BaseElement from '../core/base-element';
 import { customElement } from 'lit/decorators.js';
 
-@customElement('slide-out-up')
-export class SlideOutUp extends BaseElement {
+@customElement('zoom-in')
+export class ZoomIn extends BaseElement {
   static styles = [
     css`
       :host {
         display: inline-block;
-        transform: translate(0%, 0%);
+        opacity: 0;
+        transform: scale3d(0.3, 0.3, 0.3);
       }
     `
   ];
 
   protected getAnimation() {
-    return { translateY: ['0%', '-100%'], visibility: 'hidden' };
+    return { transform: ['scale3d(0.3, 0.3, 0.3)', 'scale3d(1, 1,1)'], opacity: [0, 1] };
   }
 }
 
 declare global {
   interface HTMLElementTagNameMap {
-    'slide-out-up': SlideOutUp;
+    'zoom-in': ZoomIn;
   }
 }

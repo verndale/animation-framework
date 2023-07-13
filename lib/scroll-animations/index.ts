@@ -35,6 +35,17 @@ import { BlurOut } from './components/blur-out';
 import { RotateLeft } from './components/rotate-left';
 import { RotateRight } from './components/rotate-right';
 
+import { ZoomIn } from './components/zoom-in';
+import { ZoomInUp } from './components/zoom-in-up';
+import { ZoomInDown } from './components/zoom-in-down';
+import { ZoomInLeft } from './components/zoom-in-left';
+import { ZoomInRight } from './components/zoom-in-right';
+import { ZoomOut } from './components/zoom-out';
+import { ZoomOutUp } from './components/zoom-out-up';
+import { ZoomOutDown } from './components/zoom-out-down';
+import { ZoomOutLeft } from './components/zoom-out-left';
+import { ZoomOutRight } from './components/zoom-out-right';
+
 import { AnimatedElement } from './components/animated-element';
 import { AnimatedTimeline } from './components/animated-timeline';
 import { ToggleElement } from '../active-state-animations/toggle-element';
@@ -73,5 +84,15 @@ export {
   RotateRight,
   AnimatedElement,
   AnimatedTimeline,
-  ToggleElement
+  ToggleElement,
+  ZoomIn,
+  ZoomInUp,
+  ZoomInDown,
+  ZoomInLeft,
+  ZoomInRight,
+  ZoomOut,
+  ZoomOutUp,
+  ZoomOutDown,
+  ZoomOutLeft,
+  ZoomOutRight
 };

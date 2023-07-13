@@ -13,7 +13,7 @@ export type AnimatedElelentProps = {
 };
 
 const meta: Meta<AnimatedElelentProps> = {
-  title: 'Scroll Animations/Animated Elelent',
+  title: 'Scroll Animations/Animated Element',
   render: template,
   argTypes: {
     animation: {
@@ -50,7 +50,17 @@ const meta: Meta<AnimatedElelentProps> = {
         'blur-in',
         'blur-out',
         'rotate-left',
-        'rotate-right'
+        'rotate-right',
+        'zoom-in',
+        'zoom-in-up',
+        'zoom-in-down',
+        'zoom-in-left',
+        'zoom-in-right',
+        'zoom-out',
+        'zoom-out-up',
+        'zoom-out-down',
+        'zoom-out-left',
+        'zoom-out-right'
       ]
     },
     content: { name: 'Content', control: 'text' },
@@ -74,13 +84,16 @@ const meta: Meta<AnimatedElelentProps> = {
         <div class="scroll-container-bottom"></div>`;
       return story();
     }
-  ]
+  ],
+  parameters: {
+    layout: 'centered'
+  }
 };
 
 export default meta;
 type Story = StoryObj<AnimatedElelentProps>;
 
-export const AnimatedElelent: Story = {
+export const AnimatedElement: Story = {
   args: {
     animation: 'fade-in',
     content: '<img src="/images/logo-verndale.png" alt="Verndale Logo" />',
