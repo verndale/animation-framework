@@ -60,7 +60,15 @@ const meta: Meta<AnimatedElelentProps> = {
         'zoom-out-up',
         'zoom-out-down',
         'zoom-out-left',
-        'zoom-out-right'
+        'zoom-out-right',
+        'zoom-in-top-left',
+        'zoom-in-top-right',
+        'zoom-in-bottom-left',
+        'zoom-in-bottom-right',
+        'zoom-out-top-left',
+        'zoom-out-top-right',
+        'zoom-out-bottom-left',
+        'zoom-out-bottom-right'
       ]
     },
     content: { name: 'Content', control: 'text' },

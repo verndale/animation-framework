@@ -45,6 +45,14 @@ import { ZoomOutUp } from './components/zoom-out-up';
 import { ZoomOutDown } from './components/zoom-out-down';
 import { ZoomOutLeft } from './components/zoom-out-left';
 import { ZoomOutRight } from './components/zoom-out-right';
+import { ZoomInTopRight } from './components/zoom-in-top-right';
+import { ZoomInTopLeft } from './components/zoom-in-top-left';
+import { ZoomInBottomRight } from './components/zoom-in-bottom-right';
+import { ZoomInBottomLeft } from './components/zoom-in-bottom-left';
+import { ZoomOutTopRight } from './components/zoom-out-top-right';
+import { ZoomOutTopLeft } from './components/zoom-out-top-left';
+import { ZoomOutBottomRight } from './components/zoom-out-bottom-right';
+import { ZoomOutBottomLeft } from './components/zoom-out-bottom-left';
 
 import { AnimatedElement } from './components/animated-element';
 import { AnimatedTimeline } from './components/animated-timeline';
@@ -94,5 +102,13 @@ export {
   ZoomOutUp,
   ZoomOutDown,
   ZoomOutLeft,
-  ZoomOutRight
+  ZoomOutRight,
+  ZoomInTopLeft,
+  ZoomInTopRight,
+  ZoomInBottomLeft,
+  ZoomInBottomRight,
+  ZoomOutTopLeft,
+  ZoomOutTopRight,
+  ZoomOutBottomLeft,
+  ZoomOutBottomRight
 };
